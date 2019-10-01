@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="" />
+    <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workflow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/workflow.txt" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1R9brNLoK4wPQXLfkCC9tePCZkQ" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples" />
   </component>
   <component name="RecentsManager">
@@ -29,22 +37,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CloudSimExample1">
+  <component name="RunManager" selected="Application.NonPowerAware">
     <configuration name="CloudSimExample1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.CloudSimExample1" />
-      <module name="cloudsim-3.0.3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.cloudbus.cloudsim.examples.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CloudSimExample2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.CloudSimExample2" />
       <module name="cloudsim-3.0.3" />
       <extension name="coverage">
         <pattern>
@@ -62,6 +57,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.cloudbus.cloudsim.examples.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NonPowerAware" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.power.planetlab.NonPowerAware" />
+      <module name="cloudsim-3.0.3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.cloudbus.cloudsim.examples.power.planetlab.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,11 +105,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CloudSimExample1" />
-        <item itemvalue="Application.RandomGenerator" />
-        <item itemvalue="Application.CloudSimExample2" />
-        <item itemvalue="Application.FFTGraphGenerator" />
+        <item itemvalue="Application.NonPowerAware" />
         <item itemvalue="Application.Runner" />
+        <item itemvalue="Application.FFTGraphGenerator" />
+        <item itemvalue="Application.RandomGenerator" />
+        <item itemvalue="Application.CloudSimExample1" />
       </list>
     </recent_temporary>
   </component>
@@ -118,6 +126,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -125,16 +144,6 @@
           <url>file://$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/CloudSimExample3.java</url>
           <line>84</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/CloudSimExample1.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/CloudSimExample1.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
