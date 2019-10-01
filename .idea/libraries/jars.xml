@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jars/cloudsim-examples-3.0.3-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/cloudsim-examples-3.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/cloudsim-3.0.3-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/commons-math3-3.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/cloudsim-3.0.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
