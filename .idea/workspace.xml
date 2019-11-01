@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minor/Generator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minor/Runner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minor/models/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minor/models/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minor/models/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minor/models/Vm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HEFTResults" beforeDir="false" afterPath="$PROJECT_DIR$/HEFTResults" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudsim-3.0.3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudsim-3.0.3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/HEFTScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/HEFTScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/HEFTScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/HEFTScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vmparams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vmparams.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workflow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/workflow.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,13 +24,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1R9brNLoK4wPQXLfkCC9tePCZkQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -37,7 +62,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.NonPowerAware">
+  <component name="RunManager" selected="Application.Runner">
     <configuration name="CloudSimExample1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.CloudSimExample1" />
       <module name="cloudsim-3.0.3" />
@@ -105,9 +130,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.NonPowerAware" />
         <item itemvalue="Application.Runner" />
         <item itemvalue="Application.FFTGraphGenerator" />
+        <item itemvalue="Application.NonPowerAware" />
         <item itemvalue="Application.RandomGenerator" />
         <item itemvalue="Application.CloudSimExample1" />
       </list>
@@ -131,7 +156,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -144,6 +171,11 @@
           <url>file://$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/CloudSimExample3.java</url>
           <line>84</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/HEFTScheduler.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

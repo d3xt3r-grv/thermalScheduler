@@ -209,12 +209,12 @@ public class BaseCloudletScheduler {
 			//both operate at the lowest voltage level
 			double idleTime = 0.0;
 			double executionTime = executionTimes.get(vm);
-			double failureTime = findFailureTime(vm);
+			//double failureTime = findFailureTime(vm);
 			//idle time is equal to last task finish time on that vm - (execution and failure time)
 			if(ev.isEmpty()){
 				idleTime = 0.0;
 			}else{
-				idleTime =  ev.get(ev.size()-1).finish - (executionTime + failureTime);
+				idleTime =  ev.get(ev.size()-1).finish - (executionTime );
 			}
 			double idleEnergy = findEnergyConsumption(vm, idleTime,(int)vmparams.get(vm).minMIPS);
 			totalEnergy = totalEnergy + (executionEnergies.get(vm)+ idleEnergy);
