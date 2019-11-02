@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/minor/Generator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/minor/Runner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/minor/models/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/minor/models/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/minor/models/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/minor/models/Vm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HEFTResults" beforeDir="false" afterPath="$PROJECT_DIR$/HEFTResults" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudsim-3.0.3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudsim-3.0.3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/HEFTScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/HEFTScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/BaseCloudletScheduler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/HEFTScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/HEFTScheduler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vmparams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vmparams.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/GaussianEliminationGG.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/GaussianEliminationGG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/MCSRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/MCSRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/RandomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/RandomGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/SchedulerPowerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/SchedulerPowerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/models/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/models/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/GaussianEliminationGG.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/GaussianEliminationGG.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/MCSRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/MCSRunner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/RandomGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/RandomGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/SchedulerPowerModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/SchedulerPowerModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workflow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/workflow.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,8 +41,12 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.capture" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples" />
     </key>
@@ -62,20 +63,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Runner">
-    <configuration name="CloudSimExample1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.CloudSimExample1" />
-      <module name="cloudsim-3.0.3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.cloudbus.cloudsim.examples.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Runner (1)">
     <configuration name="FFTGraphGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.FFTGraphGenerator" />
       <module name="cloudsim-3.0.3" />
@@ -115,6 +103,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Runner (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Runner" />
+      <module name="cloudsim-3.0.3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.Runner" />
       <module name="cloudsim-3.0.3" />
@@ -130,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Runner (1)" />
         <item itemvalue="Application.Runner" />
         <item itemvalue="Application.FFTGraphGenerator" />
         <item itemvalue="Application.NonPowerAware" />
         <item itemvalue="Application.RandomGenerator" />
-        <item itemvalue="Application.CloudSimExample1" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +171,16 @@
           <url>file://$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/HEFTScheduler.java</url>
           <line>123</line>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/minor/Runner.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/minor/Runner.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
