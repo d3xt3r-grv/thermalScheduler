@@ -71,13 +71,20 @@ public class Simulator {
     }
 
     public static double calculateEnergy(Solution solution){
+        double makespan=solution.time;
         double energy=0;
         for(Vm vm : solution.timeline.keySet()){
+            double execTime=0;
             List<Event> vmEvemts= solution.timeline.get(vm);
             for(Event event: vmEvemts){
                 energy+=(vm.coefficient*Math.pow(event.mips,3)*(event.finishTime-event.startTime));
+                if(event.eventType.contentEquals("EXECUTION"))
+                    execTime+=event.finishTime-event.startTime;
             }
+            double idleEnergy= vm.coefficient*Math.pow(vm.minMips,3)*(makespan-execTime);
+            energy+=idleEnergy;
         }
+        //TODO add idle time energy
         solution.energy=energy;
         return energy;
     }

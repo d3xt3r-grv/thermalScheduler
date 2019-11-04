@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/d3xt3r.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/d3xt3r.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minor/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/models/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/models/Task.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
