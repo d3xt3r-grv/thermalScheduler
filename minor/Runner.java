@@ -1,6 +1,7 @@
 import models.Solution;
 import models.Task;
 import models.Vm;
+import org.apache.commons.math3.util.Pair;
 
 import java.io.*;
 import java.util.*;
@@ -148,10 +149,11 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             Task t=runner.taskList.get(i);
             Vm v = runner.getVmById((int) (Math.random()*nVm));
-            Map<Task,Vm> map= new HashMap<>();
-            map.put(t,v);
-            initialSolution.solution.add(map);
+            initialSolution.setActualCosts(t,v);
+            initialSolution.schedulingSequence.add(t);
+            initialSolution.mapping.put(t,v);
         }
+        Simulator.createEvents(initialSolution);
     }
 
 }

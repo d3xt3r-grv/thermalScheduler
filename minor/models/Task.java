@@ -15,13 +15,17 @@ public class Task {
 
     public List<Task> childTasks;
 
-    public double ast;
-
-    public double aft;
+//    public double ast;
+//
+//    public double aft;
 
     public double avgCommTime;
 
+//    public double actualCommTime;
+
     public double avgExecTime;
+
+//    public double actualExecTime;
 
     public double rank;
 
@@ -31,8 +35,8 @@ public class Task {
         this.sizeOfOutput=sizeOfOutput;
         this.parentTasks= new ArrayList<>();
         this.childTasks = new ArrayList<>();
-        this.ast=-1;
-        this.aft=-1;
+//        this.ast=-1;
+//        this.aft=-1;
         this.rank=-1;
     }
 
