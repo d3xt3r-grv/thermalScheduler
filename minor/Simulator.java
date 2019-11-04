@@ -59,13 +59,26 @@ public class Simulator {
         }
     }
 
-    public static double calculateMakespan(){
-        //CODE HERE
-        return 0;
+    public static double calculateMakespan(Solution solution){
+        double makespan = 0;
+        for(Task task:solution.schedulingSequence){
+            if(task.childTasks.size()==0){
+                makespan=Math.max(makespan,solution.actualFinishTimes.get(task));
+            }
+        }
+        solution.time=makespan;
+        return makespan;
     }
 
-    public static double calculateEnergy(){
-        //CODE HERE
-        return 0;
+    public static double calculateEnergy(Solution solution){
+        double energy=0;
+        for(Vm vm : solution.timeline.keySet()){
+            List<Event> vmEvemts= solution.timeline.get(vm);
+            for(Event event: vmEvemts){
+                energy+=(vm.coefficient*Math.pow(event.mips,3)*(event.finishTime-event.startTime));
+            }
+        }
+        solution.energy=energy;
+        return energy;
     }
 }

@@ -154,6 +154,8 @@ public class Runner {
             initialSolution.mapping.put(t,v);
         }
         Simulator.createEvents(initialSolution);
+        Simulator.calculateMakespan(initialSolution);
+        Simulator.calculateEnergy(initialSolution);
     }
 
 }
