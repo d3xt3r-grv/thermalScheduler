@@ -4,7 +4,7 @@
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minor/models/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/models/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/models/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/models/Task.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>

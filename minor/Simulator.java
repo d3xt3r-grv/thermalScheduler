@@ -84,7 +84,6 @@ public class Simulator {
             double idleEnergy= vm.coefficient*Math.pow(vm.minMips,3)*(makespan-execTime);
             energy+=idleEnergy;
         }
-        //TODO add idle time energy
         solution.energy=energy;
         return energy;
     }
