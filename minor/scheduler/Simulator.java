@@ -1,3 +1,5 @@
+package scheduler;
+
 import models.Event;
 import models.Solution;
 import models.Task;
@@ -10,8 +12,6 @@ import java.util.Map;
 public class Simulator {
 
     public static void createEvents(Solution solution){
-        double makespan=0;
-        double energy=0;
         Map<Task,Vm> mapping = solution.mapping;
         for(int i=0;i<solution.schedulingSequence.size();i++){
             Task task= solution.schedulingSequence.get(i);

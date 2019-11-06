@@ -1,3 +1,5 @@
+package scheduler;
+
 import java.util.Scanner;
 
 public class Generator {

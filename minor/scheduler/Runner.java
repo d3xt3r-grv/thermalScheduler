@@ -1,7 +1,8 @@
+package scheduler;
+
 import models.Solution;
 import models.Task;
 import models.Vm;
-import org.apache.commons.math3.util.Pair;
 
 import java.io.*;
 import java.util.*;

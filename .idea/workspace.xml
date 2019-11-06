@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minor/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/models/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/models/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/MultiObjectiveScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/MultiObjectiveScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Simulator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,11 +38,11 @@
     <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.capture" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -95,13 +97,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Runner (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Runner" />
-      <module name="cloudsim-3.0.3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.Runner" />
       <module name="cloudsim-3.0.3" />
@@ -111,6 +106,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="scheduler.Runner" />
+      <module name="cloudsim-3.0.3" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -160,12 +162,12 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/minor/Runner.java</url>
+          <url>file://$PROJECT_DIR$/minor/scheduler/Runner.java</url>
           <line>160</line>
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/minor/Runner.java</url>
+          <url>file://$PROJECT_DIR$/minor/scheduler/Runner.java</url>
           <line>158</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>

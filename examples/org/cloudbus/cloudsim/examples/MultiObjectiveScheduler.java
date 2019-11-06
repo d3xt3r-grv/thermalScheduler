@@ -53,7 +53,7 @@ public class MultiObjectiveScheduler extends FailureAwareScheduler {
 		}
 		//for noncritical parents, assign critical as false
 		/*
-		for(Cloudlet cloudletObject: Runner.getParentList(cloudlet)){
+		for(Cloudlet cloudletObject: scheduler.Runner.getParentList(cloudlet)){
 			Cloudlet parent = cloudletObject;
 			if(parent.equals(criticalParent)){
 				critical.put(parent, true);
@@ -78,7 +78,7 @@ public class MultiObjectiveScheduler extends FailureAwareScheduler {
 			for(int i =0; i<size; i++){
 				Event ev = sched.get(i);
 				if(critical.get(ev.cloudlet) == true){
-					executionEnergy += findEnergyConsumption(vm, ev.finish-ev.start, Runner.getVmMips(vm));
+					executionEnergy += findEnergyConsumption(vm, ev.finish-ev.start, scheduler.Runner.getVmMips(vm));
 					executionTime += ev.finish - ev.start;
 
 
@@ -117,7 +117,7 @@ public class MultiObjectiveScheduler extends FailureAwareScheduler {
 					}
 					else{
 						//the task is non critical but vm fails if execution extended
-						executionEnergy += findEnergyConsumption(vm, ev.finish-ev.start, Runner.getVmMips(vm));
+						executionEnergy += findEnergyConsumption(vm, ev.finish-ev.start, scheduler.Runner.getVmMips(vm));
 						executionTime += ev.finish - ev.start;
 					}
 				}
@@ -434,7 +434,7 @@ public class MultiObjectiveScheduler extends FailureAwareScheduler {
 			ArrayList<Cloudlet> path = new ArrayList<Cloudlet>();
 			Cloudlet c = cloudlet;
 			//check if the cloudlet has unassigned parent
-			for(Cloudlet cloudletObject: Runner.getParentList(c)){
+			for(Cloudlet cloudletObject: scheduler.Runner.getParentList(c)){
 				Cloudlet parent = cloudletObject;
 				Boolean checkunassigned = false;
 				double criticalvalue, maxvalue = 0.0;
