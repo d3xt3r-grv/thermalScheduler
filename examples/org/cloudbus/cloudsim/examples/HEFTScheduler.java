@@ -81,7 +81,7 @@ public class HEFTScheduler extends BaseCloudletScheduler{
 	        calc_TransferCosts();
 	        calculateRanks();
 	        Log.printLine("Ranks calculated");
-	        allocatevmavailability();
+	        //allocatevmavailability();
 			allocateVmPowerParameters();
 	        // Selection phase
 	        Log.printLine("Allocation for HEFT");
@@ -98,7 +98,7 @@ public class HEFTScheduler extends BaseCloudletScheduler{
 	        	System.out.println();
 	        }
 	        */
-	        adjustforfailures();
+	        //adjustforfailures();
 	        System.out.println("\nafter adjusting heft schedule for failures");
 	        for(Cloudlet cloudletObject: Cloudletlist){
 	        	Cloudlet cloudlet = cloudletObject;

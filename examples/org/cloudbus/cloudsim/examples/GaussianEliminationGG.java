@@ -3,7 +3,6 @@
 package org.cloudbus.cloudsim.examples;
 
 import java.io.*;
-import java.util.*;
 import java.lang.*;
 
 /*file workflow.txt saves the following information about the workflow generated, 
