@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/d3xt3r.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/d3xt3r.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/MultiObjectiveScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/MultiObjectiveScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minor/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minor/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minor/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Simulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/scheduler/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Runner.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
