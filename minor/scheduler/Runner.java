@@ -1,5 +1,6 @@
 package scheduler;
 
+import Optimizer.AntLionOptimizer;
 import models.Solution;
 import models.Task;
 import models.Vm;
@@ -193,8 +194,8 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
-        Solution solution=new Solution(runner,vmAllocation);
-        solution.calculateObjectives();
+        AntLionOptimizer malo= new AntLionOptimizer(10,10,100,2,10,2);
+        malo.startOptimisation(runner);
     }
 
 }

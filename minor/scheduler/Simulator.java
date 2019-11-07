@@ -12,6 +12,8 @@ import java.util.Map;
 public class Simulator {
 
     public static void createEvents(Solution solution){
+        if(solution.energy!=Double.MAX_VALUE)
+            return;
         Map<Task,Vm> mapping = solution.mapping;
         for(int i=0;i<solution.schedulingSequence.size();i++){
             Task task= solution.schedulingSequence.get(i);
@@ -77,11 +79,11 @@ public class Simulator {
             double execTime=0;
             List<Event> vmEvemts= solution.timeline.get(vm);
             for(Event event: vmEvemts){
-                energy+=(vm.coefficient*Math.pow(event.mips,3)*(event.finishTime-event.startTime));
+                energy+=(vm.coefficient*Math.pow(event.mips/1000,3)*(event.finishTime-event.startTime));
                 if(event.eventType.contentEquals("EXECUTION"))
                     execTime+=event.finishTime-event.startTime;
             }
-            double idleEnergy= vm.coefficient*Math.pow(vm.minMips,3)*(makespan-execTime);
+            double idleEnergy= vm.coefficient*Math.pow(vm.minMips/1000,3)*(makespan-execTime);
             energy+=idleEnergy;
         }
         solution.energy=energy;

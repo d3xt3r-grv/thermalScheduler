@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/d3xt3r.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/d3xt3r.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/models/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/models/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/scheduler/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/scheduler/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Simulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/models/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/models/Solution.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/workflow.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,20 +16,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CoverageViewManager">
-    <option name="myElementSize" value="240" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1R9brNLoK4wPQXLfkCC9tePCZkQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -180,14 +177,21 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/minor/scheduler/Runner.java</url>
-          <line>208</line>
+          <url>file://$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java</url>
+          <line>178</line>
           <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java</url>
+          <line>176</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/minor/scheduler/Runner.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/cloudsim_3_0_3$Runner.ic" NAME="Runner Coverage Results" MODIFIED="1573109817231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
