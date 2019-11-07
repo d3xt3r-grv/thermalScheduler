@@ -23,7 +23,7 @@ public class Solution {
 
     public Map<Task, Double> actualExecTimes;
 
-    public Map<Task, Double> actualCommTimes;
+    public Map<Task, Map<Task,Double>> actualCommTimes;
 
     public Map<Vm, List<Event>> timeline;
 
@@ -41,7 +41,10 @@ public class Solution {
 
     public void setActualCosts(Task t, Vm v){
         this.actualExecTimes.put(t,t.size/v.maxMips);
-        this.actualCommTimes.put(t,t.sizeOfOutput/v.bw);
+        //this.actualCommTimes.put(t,t.sizeOfOutput/v.bw);
+        for(Task child: t.childTasks){
+
+        }
     }
 
     public void setActualTimes(Task t, Double ast, Double aft){

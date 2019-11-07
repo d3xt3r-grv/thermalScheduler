@@ -23,7 +23,7 @@ public class Simulator {
                     est=Math.max(est, solution.actualFinishTimes.get(parent));
                 }
                 else{
-                    est=Math.max(est,solution.actualFinishTimes.get(parent)+solution.actualCommTimes.get(parent));
+                    //est=Math.max(est,solution.actualFinishTimes.get(parent)+solution.actualCommTimes.get(parent));
                 }
             }
             for(int j=i-1;j>=0;j--){
@@ -52,7 +52,7 @@ public class Simulator {
             vmEvents.add(new Event(solution.actualStartTimes.get(task),solution.actualFinishTimes.get(task),vm.maxMips,"EXECUTION"));
             for(Task child: task.childTasks){
                 if(mapping.get(child).id != mapping.get(task).id){
-                    vmEvents.add(new Event(solution.actualFinishTimes.get(task), solution.actualFinishTimes.get(task)+solution.actualCommTimes.get(task),vm.minMips, "TRANSFER"));
+                    //vmEvents.add(new Event(solution.actualFinishTimes.get(task), solution.actualFinishTimes.get(task)+solution.actualCommTimes.get(task),vm.minMips, "TRANSFER"));
                 }
             }
             timeline.put(vm,vmEvents);
