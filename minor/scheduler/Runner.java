@@ -189,17 +189,12 @@ public class Runner {
                 return Double.compare(t1.rank, task.rank);
             }
         });
-//        Solution initialSolution =  new Solution();
-//        for(int i=0;i<nTasks;i++){
-//            Task t=runner.taskList.get(i);
-//            Vm v = runner.getVmById((int) (Math.random()*nVm));
-//            initialSolution.setActualCosts(t,v);
-//            initialSolution.schedulingSequence.add(t);
-//            initialSolution.mapping.put(t,v);
-//        }
-//        Simulator.createEvents(initialSolution);
-//        Simulator.calculateMakespan(initialSolution);
-//        Simulator.calculateEnergy(initialSolution);
+        List<Integer> vmAllocation = new ArrayList<>();
+        for(int i=0;i<nTasks;i++){
+            vmAllocation.add((int) (Math.random()*nVm));
+        }
+        Solution solution=new Solution(runner,vmAllocation);
+        solution.calculateObjectives();
     }
 
 }

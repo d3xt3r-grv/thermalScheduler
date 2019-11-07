@@ -1,8 +1,8 @@
 package models;
 
-import org.apache.commons.math3.util.Pair;
+import scheduler.Runner;
+import scheduler.Simulator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +27,8 @@ public class Solution {
 
     public Map<Vm, List<Event>> timeline;
 
-    public Solution(){
-        this.schedulingSequence =new ArrayList<>();
+    public Solution(Runner runner, List<Integer> vmAllocation){
+        this.schedulingSequence =runner.taskList;
         this.mapping= new HashMap<>();
         this.time=Double.MAX_VALUE;
         this.energy=Double.MAX_VALUE;
@@ -37,18 +37,33 @@ public class Solution {
         this.actualStartTimes= new HashMap<>();
         this.actualFinishTimes = new HashMap<>();
         this.timeline=new HashMap<>();
+        for(int i=0;i<vmAllocation.size();i++){
+            mapping.put(schedulingSequence.get(i),runner.vmList.get(vmAllocation.get(i)));
+        }
+        setActualCosts(runner);
     }
 
-    public void setActualCosts(Task t, Vm v){
-        this.actualExecTimes.put(t,t.size/v.maxMips);
-        //this.actualCommTimes.put(t,t.sizeOfOutput/v.bw);
-        for(Task child: t.childTasks){
-
+    public void setActualCosts(Runner runner){
+        for(Task t:mapping.keySet()){
+            actualExecTimes.put(t,t.size/mapping.get(t).maxMips);
+            Map<Task,Double> childCommTimes=new HashMap<>();
+            for(Task child:t.childTasks){
+                if(runner.vmToVmBandwidth.get(mapping.get(t).id).get(mapping.get(child).id)==Double.MAX_VALUE){
+                    childCommTimes.put(child,0.0);
+                }
+                else
+                    childCommTimes.put(child,t.sizeOfOutput.get(child)/runner.vmToVmBandwidth.get(mapping.get(t).id).get(mapping.get(child).id));
+            }
+            actualCommTimes.put(t,childCommTimes);
         }
     }
 
     public void setActualTimes(Task t, Double ast, Double aft){
         actualStartTimes.put(t,ast);
         actualFinishTimes.put(t,aft);
+    }
+
+    public void calculateObjectives(){
+        Simulator.simulate(this);
     }
 }
