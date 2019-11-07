@@ -3,6 +3,7 @@ package models;
 import scheduler.Runner;
 import scheduler.Simulator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,11 @@ public class Solution {
         actualFinishTimes.put(t,aft);
     }
 
-    public void calculateObjectives(){
+    public List<Double> calculateObjectives(){
         Simulator.simulate(this);
+        List<Double> objectives= new ArrayList<>();
+        objectives.add(this.time);
+        objectives.add(this.energy);
+        return objectives;
     }
 }
