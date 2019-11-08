@@ -92,32 +92,12 @@ public class AntLionOptimizer {
         for(int i=0;i<antPosition.size();i++){
             Solution solution= new Solution(runner,antPosition.get(i));
             List<Double> fitness=solution.calculateObjectives();
-//            if(!this.dominates(fitness)){
-//                elitePosition=antPosition.get(i);
-//                eliteFitness=fitness;
-//            }
+            if(dominates(fitness,eliteFitness)){
+                elitePosition=antPosition.get(i);
+                eliteFitness=fitness;
+            }
             antFitness.set(i,fitness);
         }
-    }
-
-    private void findElite() {
-        double minTime=Double.MAX_VALUE;
-        double minEnergy=Double.MAX_VALUE;
-        for(int i=0;i<antFitness.size();i++){
-//            if(!this.dominates(antFitness.get(i))){
-//                eliteFitness=antFitness.get(i);
-//                elitePosition=antPosition.get(i);
-//            }
-            if((antFitness.get(i).get(0)<minTime && antFitness.get(i).get(1)<minEnergy)||(antFitness.get(i).get(0)<minTime && antFitness.get(i).get(1)<=minEnergy)||(antFitness.get(i).get(0)<=minTime && antFitness.get(i).get(1)<minEnergy))
-            {
-                minTime=antFitness.get(i).get(0);
-                minEnergy=antFitness.get(i).get(1);
-            }
-        }
-        List<Double> temp = new ArrayList<>();
-        temp.add(minTime);
-        temp.add(minEnergy);
-        eliteFitness=temp;
     }
 
     private void updateArchive() {
@@ -127,53 +107,89 @@ public class AntLionOptimizer {
         tempPositionArchive.addAll(antPosition);
         tempFitnessArchive.addAll(fitnessArchive);
         tempFitnessArchive.addAll(antFitness);
-        Map<Integer, Boolean> hashMap= new HashMap<>();
-        for(int i=0;i<tempFitnessArchive.size();i++){
-            for(int j=i+1;j<tempFitnessArchive.size();j++){
-                if(tempFitnessArchive.get(i).equals(tempFitnessArchive.get(j))){
-                    hashMap.put(i, false);
-                    hashMap.put(j, false);
-                }
-                else{
-                    if(dominates(tempFitnessArchive.get(i),tempFitnessArchive.get(j))){
-                        hashMap.put(j,false);
+        Map<Integer, Integer> nP = new HashMap<>();
+        Map<Integer, List<Integer>> sP = new HashMap<>();
+        Map<Integer, Integer> rank = new HashMap<>();
+        Map<Integer, List<Integer>> front = new HashMap<>();
+
+        for(int i=0;i<tempFitnessArchive.size();i++)
+        {
+            int tempNp=0;
+            List<Integer> tempSp = new ArrayList<>();
+            for(int j=0;j<tempFitnessArchive.size();j++)
+            {
+                if(i!=j)
+                {
+                    if(dominates(tempFitnessArchive.get(i),tempFitnessArchive.get(j)))
+                    {
+                        tempSp.add(j);
                     }
-                    else{
-                        hashMap.put(i,false);
-                        break;
+                    else if(dominates(tempFitnessArchive.get(j),tempFitnessArchive.get(i)))
+                    {
+                        tempNp++;
                     }
                 }
             }
-        }
-        positionArchive.clear();
-        fitnessArchive.clear();
-        for(int i=0;i<tempFitnessArchive.size();i++){
-            if(!hashMap.containsKey(i)){
-                positionArchive.add(tempPositionArchive.get(i));
-                fitnessArchive.add(tempFitnessArchive.get(i));
+            nP.put(i,tempNp);
+            sP.put(i,tempSp);
+            if(tempNp==0)
+            {
+                rank.put(i,1);
+                if(front.containsKey(1))
+                {
+                    List<Integer> tempSet = front.get(1);
+                    tempSet.add(i);
+                    front.put(1,tempSet);
+                }
+                else
+                {
+                    List<Integer> tempSet = new ArrayList<>();
+                    tempSet.add(i);
+                    front.put(1,tempSet);
+                }
             }
         }
-    }
 
-    private boolean dominates(List<Double> f2) {
-//        if( ( (this.eliteFitness.get(0)<=f2.get(0)) && (this.eliteFitness.get(1)<=f2.get(1)) ) && ( (this.eliteFitness.get(0)<f2.get(0)) || (this.eliteFitness.get(1)<f2.get(1)) ) )
-        if(this.eliteFitness.get(0)<f2.get(0)&&this.eliteFitness.get(1)<f2.get(1))
-            return true;
-
-        return false;
+        int i=1;
+        while(front.containsKey(i))
+        {
+            List<Integer> nextFront = new ArrayList<>();
+            List<Integer> currentFront = front.get(i);
+            for(int j=0;j<currentFront.size();j++)
+            {
+                int sol = currentFront.get(j);
+                List<Integer> tempSp = sP.get(sol);
+                for(int k=0;k<tempSp.size();k++)
+                {
+                    int q=tempSp.get(k);
+                    nP.put(q,nP.get(q)-1);
+                    if(nP.get(q)==0)
+                    {
+                        rank.put(q,i+1);
+                        nextFront.add(q);
+                    }
+                }
+            }
+            i++;
+            if(nextFront.size()>0)
+                front.put(i,nextFront);
+        }
     }
 
     private boolean dominates(List<Double> f1, List<Double> f2) {
-        if( ( (f1.get(0)<=f2.get(0)) && (f1.get(1)<=f2.get(1)) ) && ( (f1.get(0)<f2.get(0)) || (f1.get(1)<f2.get(1)) ) )
-            return true;
-        return false;
+        double time1=f1.get(0),time2=f2.get(0),energy1=f1.get(1),energy2=f2.get(1);
+        boolean all=false,any=false;
+        if(time1<=time2 && energy1<=energy2)
+            all=true;
+        if(time1<time2 || energy1<energy2)
+            any=true;
+        return all && any;
     }
 
     public void startOptimisation(Runner runner){
         this.initializeArchives();
         for(int i=0;i<maxIterations;i++){
             calculateFitness(runner);
-            findElite();
             updateArchive();
         }
     }
