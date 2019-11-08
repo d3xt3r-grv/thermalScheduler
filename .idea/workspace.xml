@@ -173,23 +173,13 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java</url>
-          <line>154</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/minor/scheduler/Runner.java</url>
           <line>198</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="121" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java</url>
-          <line>153</line>
+          <line>329</line>
           <option name="timeStamp" value="122" />
         </line-breakpoint>
       </breakpoints>

@@ -194,8 +194,11 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
-        AntLionOptimizer malo= new AntLionOptimizer(2,10,100,2,10,2);
+        AntLionOptimizer malo= new AntLionOptimizer(100,10,100,2,100,3);
         malo.startOptimisation(runner);
+        for(int i=0;i<malo.fitnessArchive.size();i++){
+
+        }
     }
 
 }
