@@ -107,32 +107,72 @@ public class AntLionOptimizer {
         tempPositionArchive.addAll(antPosition);
         tempFitnessArchive.addAll(fitnessArchive);
         tempFitnessArchive.addAll(antFitness);
-        Map<Integer, Boolean> hashMap= new HashMap<>();
-        for(int i=0;i<tempFitnessArchive.size();i++){
-            hashMap.put(i,true);
-            for(int j=i-1;j>=0;j--){
-                if(tempFitnessArchive.get(i).equals(tempFitnessArchive.get(j))){
-                    hashMap.put(i, false);
-                    hashMap.put(j, true);
+        Map<Integer, Integer> nP = new HashMap<>();
+        Map<Integer, List<Integer>> sP = new HashMap<>();
+        Map<Integer, Integer> rank = new HashMap<>();
+        Map<Integer, List<Integer>> front = new HashMap<>();
+
+        for(int i=0;i<tempFitnessArchive.size();i++)
+        {
+            int tempNp=0;
+            List<Integer> tempSp = new ArrayList<>();
+            for(int j=0;j<tempFitnessArchive.size();j++)
+            {
+                if(i!=j)
+                {
+                    if(dominates(tempFitnessArchive.get(i),tempFitnessArchive.get(j)))
+                    {
+                        tempSp.add(j);
+                    }
+                    else if(dominates(tempFitnessArchive.get(j),tempFitnessArchive.get(i)))
+                    {
+                        tempNp++;
+                    }
                 }
-                else{
-                    if(dominates(tempFitnessArchive.get(i),tempFitnessArchive.get(j))){
-                        hashMap.put(j,false);
-                    }
-                    else if(dominates(tempFitnessArchive.get(j),tempFitnessArchive.get(i))){
-                        hashMap.put(i,false);
-                        break;
-                    }
+            }
+            nP.put(i,tempNp);
+            sP.put(i,tempSp);
+            if(tempNp==0)
+            {
+                rank.put(i,1);
+                if(front.containsKey(1))
+                {
+                    List<Integer> tempSet = front.get(1);
+                    tempSet.add(i);
+                    front.put(1,tempSet);
+                }
+                else
+                {
+                    List<Integer> tempSet = new ArrayList<>();
+                    tempSet.add(i);
+                    front.put(1,tempSet);
                 }
             }
         }
-        positionArchive.clear();
-        fitnessArchive.clear();
-        for(int i=0;i<tempFitnessArchive.size();i++){
-            if(hashMap.get(i)){
-                positionArchive.add(tempPositionArchive.get(i));
-                fitnessArchive.add(tempFitnessArchive.get(i));
+
+        int i=1;
+        while(front.containsKey(i))
+        {
+            List<Integer> nextFront = new ArrayList<>();
+            List<Integer> currentFront = front.get(i);
+            for(int j=0;j<currentFront.size();j++)
+            {
+                int sol = currentFront.get(j);
+                List<Integer> tempSp = sP.get(sol);
+                for(int k=0;k<tempSp.size();k++)
+                {
+                    int q=tempSp.get(k);
+                    nP.put(q,nP.get(q)-1);
+                    if(nP.get(q)==0)
+                    {
+                        rank.put(q,i+1);
+                        nextFront.add(q);
+                    }
+                }
             }
+            i++;
+            if(nextFront.size()>0)
+                front.put(i,nextFront);
         }
     }
 
