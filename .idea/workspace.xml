@@ -173,7 +173,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java</url>
-          <line>207</line>
+          <line>206</line>
           <option name="timeStamp" value="129" />
         </line-breakpoint>
       </breakpoints>

@@ -177,16 +177,15 @@ public class AntLionOptimizer {
         List<List<Double>> crowdDist = new ArrayList<>();
         for(int j = 1; j <= front.size(); j++){
             List<Double> tempCD = new ArrayList<>();
+            List<Pair<Integer, Pair<Double, Double>> fitnessValuesWIndex = new ArrayList<>();
             int l = front.get(j).size();
             for(int x = 0; x < l; x++){
                 tempCD.add(0.0);
+                Double time = antFitness.get(front.get(j).get(x)).get(0);
+                Double energy = antFitness.get(front.get(j).get(x)).get(1);
+                fitnessValuesWIndex.add(Pair.create(x, Pair.create(time, energy)));
             }
-            List<List<Double>> nonDomFit = new ArrayList<>();
             for(int n = 0; n < numObj; n++){
-                List<Double> tempNonDom = new ArrayList<>();
-                for(int x = 0; x < l; x++){
-                    tempNonDom.add(front.get(j).get(x));
-                }
 
             }
         }
