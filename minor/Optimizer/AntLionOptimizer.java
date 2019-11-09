@@ -174,6 +174,22 @@ public class AntLionOptimizer {
             if(nextFront.size()>0)
                 front.put(i,nextFront);
         }
+        List<List<Double>> crowdDist = new ArrayList<>();
+        for(int j = 1; j <= front.size(); j++){
+            List<Double> tempCD = new ArrayList<>();
+            int l = front.get(j).size();
+            for(int x = 0; x < l; x++){
+                tempCD.add(0.0);
+            }
+            List<List<Double>> nonDomFit = new ArrayList<>();
+            for(int n = 0; n < numObj; n++){
+                List<Double> tempNonDom = new ArrayList<>();
+                for(int x = 0; x < l; x++){
+                    tempNonDom.add(front.get(j).get(x));
+                }
+
+            }
+        }
     }
 
     private boolean dominates(List<Double> f1, List<Double> f2) {
