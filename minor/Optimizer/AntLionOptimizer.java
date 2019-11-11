@@ -4,10 +4,16 @@ import models.Solution;
 import org.apache.commons.math3.util.Pair;
 import scheduler.Runner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 
 @SuppressWarnings("unchecked")
 public class AntLionOptimizer {
@@ -100,7 +106,7 @@ public class AntLionOptimizer {
         }
     }
 
-    private void updateArchive() {
+    private void updateArchive() throws IOException {
         List<List<Integer>> tempPositionArchive = new ArrayList<>();
         List<List<Double>> tempFitnessArchive = new ArrayList<>();
         tempPositionArchive.addAll(positionArchive);
@@ -110,7 +116,7 @@ public class AntLionOptimizer {
         Map<Integer, Integer> nP = new HashMap<>();
         Map<Integer, List<Integer>> sP = new HashMap<>();
         Map<Integer, Integer> rank = new HashMap<>();
-        Map<Integer, List<Integer>> front = new HashMap<>();
+        Map<Integer, List<Integer>> fronts = new HashMap<>();
 
         for(int i=0;i<tempFitnessArchive.size();i++)
         {
@@ -135,26 +141,26 @@ public class AntLionOptimizer {
             if(tempNp==0)
             {
                 rank.put(i,1);
-                if(front.containsKey(1))
+                if(fronts.containsKey(1))
                 {
-                    List<Integer> tempSet = front.get(1);
+                    List<Integer> tempSet = fronts.get(1);
                     tempSet.add(i);
-                    front.put(1,tempSet);
+                    fronts.put(1,tempSet);
                 }
                 else
                 {
                     List<Integer> tempSet = new ArrayList<>();
                     tempSet.add(i);
-                    front.put(1,tempSet);
+                    fronts.put(1,tempSet);
                 }
             }
         }
 
         int i=1;
-        while(front.containsKey(i))
+        while(fronts.containsKey(i))
         {
             List<Integer> nextFront = new ArrayList<>();
-            List<Integer> currentFront = front.get(i);
+            List<Integer> currentFront = fronts.get(i);
             for(int j=0;j<currentFront.size();j++)
             {
                 int sol = currentFront.get(j);
@@ -172,20 +178,62 @@ public class AntLionOptimizer {
             }
             i++;
             if(nextFront.size()>0)
-                front.put(i,nextFront);
+                fronts.put(i,nextFront);
         }
-        List<List<Double>> crowdDist = new ArrayList<>();
-        for(int j = 1; j <= front.size(); j++){
-            List<Double> tempCD = new ArrayList<>();
-            List<Pair<Integer, Pair<Double, Double>> fitnessValuesWIndex = new ArrayList<>();
-            int l = front.get(j).size();
+        List<Double> crowdDist = new ArrayList<>();
+        for(int c = 0; c < tempFitnessArchive.size(); c++){
+            crowdDist.add(0.0);
+        }
+        for(int j = 1; j <= fronts.size(); j++){
+            List<Pair<Integer, Pair<Double, Double>>> fitnessValuesWIndex = new ArrayList<>();
+            int l = fronts.get(j).size();
             for(int x = 0; x < l; x++){
-                tempCD.add(0.0);
-                Double time = antFitness.get(front.get(j).get(x)).get(0);
-                Double energy = antFitness.get(front.get(j).get(x)).get(1);
-                fitnessValuesWIndex.add(Pair.create(x, Pair.create(time, energy)));
+                Double time = antFitness.get(fronts.get(j).get(x)).get(0);
+                Double energy = antFitness.get(fronts.get(j).get(x)).get(1);
+                fitnessValuesWIndex.add(Pair.create(fronts.get(j).get(x), Pair.create(time, energy)));
             }
-            for(int n = 0; n < numObj; n++){
+            fitnessValuesWIndex.sort(new Comparator<Pair<Integer, Pair<Double, Double>>>() {
+                @Override
+                public int compare(Pair<Integer, Pair<Double, Double>> t1, Pair<Integer, Pair<Double, Double>> t2) {
+                    return Double.compare(t1.getSecond().getFirst(),t2.getSecond().getFirst());
+                }
+            });
+            crowdDist.set(fitnessValuesWIndex.get(0).getFirst(), Double.MAX_VALUE);
+            crowdDist.set(fitnessValuesWIndex.get(l-1).getFirst(), Double.MAX_VALUE);
+            Double minTime = fitnessValuesWIndex.get(0).getSecond().getFirst();
+            Double maxTime = fitnessValuesWIndex.get(l-1).getSecond().getFirst();
+            for(int x = 1; x < l-1; x++){
+                Double timePrev = antFitness.get(fronts.get(j).get(x-1)).get(0);
+                Double timeNext = antFitness.get(fronts.get(j).get(x+1)).get(0);
+                if (crowdDist.get(fronts.get(j).get(x)) != Double.MAX_VALUE) {
+                    crowdDist.set(fronts.get(j).get(x), crowdDist.get(fronts.get(j).get(x))+Math.abs(timeNext-timePrev)/(maxTime-minTime));
+                }
+            }
+            fitnessValuesWIndex.sort(new Comparator<Pair<Integer, Pair<Double, Double>>>() {
+                @Override
+                public int compare(Pair<Integer, Pair<Double, Double>> t1, Pair<Integer, Pair<Double, Double>> t2) {
+                    return Double.compare(t1.getSecond().getSecond(),t2.getSecond().getSecond());
+                }
+            });
+            crowdDist.set(fitnessValuesWIndex.get(0).getFirst(), Double.MAX_VALUE);
+            crowdDist.set(fitnessValuesWIndex.get(l-1).getFirst(), Double.MAX_VALUE);
+            Double minEnergy = fitnessValuesWIndex.get(0).getSecond().getFirst();
+            Double maxEnergy = fitnessValuesWIndex.get(l-1).getSecond().getFirst();
+            for(int x = 1; x < l-1; x++){
+                Double energyPrev = antFitness.get(fronts.get(j).get(x-1)).get(1);
+                Double energyNext = antFitness.get(fronts.get(j).get(x+1)).get(1);
+                if (crowdDist.get(fronts.get(j).get(x)) != Double.MAX_VALUE) {
+                    crowdDist.set(fronts.get(j).get(x), crowdDist.get(fronts.get(j).get(x))+Math.abs(energyNext-energyPrev)/(maxEnergy-minEnergy));
+                }
+            }
+        }
+        crowdDist.get(0);
+        int temp = 0;
+        for(int j = 1; j <= fronts.size(); j++){
+            temp += fronts.get(j).size();
+            if(temp>sizeOfArchive){
+
+            }else{
 
             }
         }
@@ -201,12 +249,18 @@ public class AntLionOptimizer {
         return all && any;
     }
 
-    public void startOptimisation(Runner runner){
+    public void startOptimisation(Runner runner) throws IOException {
         this.initializeArchives();
         for(int i=0;i<maxIterations;i++){
             calculateFitness(runner);
             updateArchive();
         }
+        FileWriter writer = new FileWriter("archive.txt", true);
+        BufferedWriter buffer = new BufferedWriter(writer);
+        for(int count = 0; count < fitnessArchive.size(); count++){
+            buffer.write(fitnessArchive.get(count).get(0).toString()+" "+fitnessArchive.get(count).get(1).toString());
+        }
+        buffer.close();
     }
 
 }
