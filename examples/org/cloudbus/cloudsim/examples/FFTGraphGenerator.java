@@ -33,7 +33,7 @@ public class FFTGraphGenerator {
 			System.out.println("\nStarting Random Graph generation for FFT\n");
 
 			System.out.println("Enter size of the array");
-			int arrsize = 5;//Integer.parseInt(br.readLine());
+			int arrsize = 9;//Integer.parseInt(br.readLine());
 
 			System.out.println("Enter the value for wDag");
 			int wDag =7000000;//Integer.parseInt(br.readLine());

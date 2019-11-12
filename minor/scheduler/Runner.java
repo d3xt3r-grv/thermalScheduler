@@ -193,7 +193,7 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
-        AntLionOptimizer malo= new AntLionOptimizer(200,21,200,2,50,5);
+        AntLionOptimizer malo= new AntLionOptimizer(200,46,200,2,100,8);
         malo.startOptimisation(runner);
         FileWriter writer = new FileWriter("archive.txt");
         BufferedWriter buffer = new BufferedWriter(writer);
