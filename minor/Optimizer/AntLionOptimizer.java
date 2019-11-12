@@ -4,6 +4,7 @@ import models.Solution;
 import org.apache.commons.math3.util.Pair;
 import scheduler.Runner;
 
+import java.io.IOException;
 import java.util.*;
 
 @SuppressWarnings("unchecked")
@@ -99,6 +100,167 @@ public class AntLionOptimizer {
             }
             antFitness.add(fitness);
         }
+    }
+
+    private List<Integer> crowdingDistance(List<Integer> front, int remaining, List<List<Double>> tempFitnessArchive){
+//        List<Pair<Integer, Double>> crowdDsi = new ArrayList<>();
+        HashMap<Integer,Double> crowdDist = new HashMap<>();
+        for(int c = 0; c < front.size(); c++){
+            crowdDist.put(front.get(c),0.0);
+        }
+        List<Pair<Integer, Pair<Double, Double>>> fitnessValuesWIndex = new ArrayList<>();
+        int l = front.size();
+        for(int x = 0; x < l; x++){
+            Double time = tempFitnessArchive.get(front.get(x)).get(0);
+            Double energy = tempFitnessArchive.get(front.get(x)).get(1);
+            fitnessValuesWIndex.add(Pair.create(front.get(x), Pair.create(time, energy)));
+        }
+        fitnessValuesWIndex.sort(new Comparator<Pair<Integer, Pair<Double, Double>>>() {
+            @Override
+            public int compare(Pair<Integer, Pair<Double, Double>> t1, Pair<Integer, Pair<Double, Double>> t2) {
+                return Double.compare(t2.getSecond().getFirst(),t1.getSecond().getFirst());
+            }
+        });
+        crowdDist.put(fitnessValuesWIndex.get(0).getFirst(), Double.MAX_VALUE);
+        crowdDist.put(fitnessValuesWIndex.get(l-1).getFirst(), Double.MAX_VALUE);
+        Double minTime = fitnessValuesWIndex.get(0).getSecond().getFirst();
+        Double maxTime = fitnessValuesWIndex.get(l-1).getSecond().getFirst();
+        for(int x = 1; x < l-1; x++){
+            Double timePrev = fitnessValuesWIndex.get(x-1).getSecond().getFirst();
+            Double timeNext = fitnessValuesWIndex.get(x+1).getSecond().getFirst();
+            if (crowdDist.get(front.get(x)) != Double.MAX_VALUE) {
+                crowdDist.put(front.get(x), crowdDist.get(front.get(x))+Math.abs(timeNext-timePrev)/(maxTime-minTime));
+            }
+        }
+        fitnessValuesWIndex.sort(new Comparator<Pair<Integer, Pair<Double, Double>>>() {
+            @Override
+            public int compare(Pair<Integer, Pair<Double, Double>> t1, Pair<Integer, Pair<Double, Double>> t2) {
+                return Double.compare(t2.getSecond().getSecond(),t1.getSecond().getSecond());
+            }
+        });
+        crowdDist.put(fitnessValuesWIndex.get(0).getFirst(), Double.MAX_VALUE);
+        crowdDist.put(fitnessValuesWIndex.get(l-1).getFirst(), Double.MAX_VALUE);
+        Double minEnergy = fitnessValuesWIndex.get(0).getSecond().getSecond();
+        Double maxEnergy = fitnessValuesWIndex.get(l-1).getSecond().getSecond();
+        for(int x = 1; x < l-1; x++){
+            Double energyPrev = fitnessValuesWIndex.get(x-1).getSecond().getSecond();
+            Double energyNext = fitnessValuesWIndex.get(x+1).getSecond().getSecond();
+            if (crowdDist.get(front.get(x)) != Double.MAX_VALUE) {
+                crowdDist.put(front.get(x), crowdDist.get(front.get(x))+Math.abs(energyNext-energyPrev)/(maxEnergy-minEnergy));
+            }
+        }
+        List<Map.Entry<Integer,Double>> list = new LinkedList<Map.Entry<Integer,Double>>(crowdDist.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Double>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Double> m1, Map.Entry<Integer, Double> m2) {
+                return m2.getValue().compareTo(m1.getValue());
+            }
+        });
+        List<Integer> remainingSet = new ArrayList<>();
+        for(int i=0;i<remaining;i++)
+        {
+            remainingSet.add(list.get(i).getKey());
+        }
+        return remainingSet;
+    }
+
+    private void updateArchiveNDSort() {
+        List<List<Integer>> tempPositionArchive = new ArrayList<>();
+        List<List<Double>> tempFitnessArchive = new ArrayList<>();
+        tempPositionArchive.addAll(positionArchive);
+        tempPositionArchive.addAll(antPosition);
+        tempFitnessArchive.addAll(fitnessArchive);
+        tempFitnessArchive.addAll(antFitness);
+        fitnessArchive.clear();
+        positionArchive.clear();
+        Map<Integer, Integer> nP = new HashMap<>();
+        Map<Integer, List<Integer>> sP = new HashMap<>();
+        Map<Integer, Integer> rank = new HashMap<>();
+        Map<Integer, List<Integer>> fronts = new HashMap<>();
+        for(int i=0;i<tempFitnessArchive.size();i++)
+        {
+            int tempNp=0;
+            List<Integer> tempSp = new ArrayList<>();
+            for(int j=0;j<tempFitnessArchive.size();j++)
+            {
+                if(i!=j)
+                {
+                    if(dominates(tempFitnessArchive.get(i),tempFitnessArchive.get(j)))
+                    {
+                        tempSp.add(j);
+                    }
+                    else if(dominates(tempFitnessArchive.get(j),tempFitnessArchive.get(i)))
+                    {
+                        tempNp++;
+                    }
+                }
+            }
+            nP.put(i,tempNp);
+            sP.put(i,tempSp);
+            if(tempNp==0)
+            {
+                rank.put(i,1);
+                if(fronts.containsKey(1))
+                {
+                    List<Integer> tempSet = fronts.get(1);
+                    tempSet.add(i);
+                    fronts.put(1,tempSet);
+                }
+                else
+                {
+                    List<Integer> tempSet = new ArrayList<>();
+                    tempSet.add(i);
+                    fronts.put(1,tempSet);
+                }
+            }
+        }
+
+        int i=1;
+        while(fronts.containsKey(i))
+        {
+            List<Integer> nextFront = new ArrayList<>();
+            List<Integer> currentFront = fronts.get(i);
+            for(int j=0;j<currentFront.size();j++)
+            {
+                int sol = currentFront.get(j);
+                List<Integer> tempSp = sP.get(sol);
+                for(int k=0;k<tempSp.size();k++)
+                {
+                    int q=tempSp.get(k);
+                    nP.put(q,nP.get(q)-1);
+                    if(nP.get(q)==0)
+                    {
+                        rank.put(q,i+1);
+                        nextFront.add(q);
+                    }
+                }
+            }
+            i++;
+            if(nextFront.size()>0)
+                fronts.put(i,nextFront);
+        }
+
+        int currentArchiveSize = 0;
+        for(int j = 1; j <= fronts.size(); j++){
+            currentArchiveSize += fronts.get(j).size();
+            List<Integer> front = fronts.get(j);
+            if(currentArchiveSize>maxArchiveSize){
+                List<Integer> toAdd = crowdingDistance(front, maxArchiveSize - fitnessArchive.size(), tempFitnessArchive);
+                for(int it = 0; it < toAdd.size();it++){
+                    int solIndex = toAdd.get(it);
+                    fitnessArchive.add(tempFitnessArchive.get(solIndex));
+                    positionArchive.add(tempPositionArchive.get(solIndex));
+                }
+                break;
+            }else{
+                for(int it = 0; it < front.size();it++){
+                    int solIndex = front.get(it);
+                    fitnessArchive.add(tempFitnessArchive.get(solIndex));
+                    positionArchive.add(tempPositionArchive.get(solIndex));
+                }
+            }
+        }
+
     }
 
     private void updateArchive() {
