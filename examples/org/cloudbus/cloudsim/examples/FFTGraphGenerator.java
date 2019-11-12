@@ -24,7 +24,7 @@ public class FFTGraphGenerator {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		try{
 
-			File file = new File("workflow.txt");
+			File file = new File("graph.txt");
 			//System.out.println(file.getAbsolutePath());
 			//FileWriter writerfile = new FileWriter(file);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));	
@@ -33,7 +33,7 @@ public class FFTGraphGenerator {
 			System.out.println("\nStarting Random Graph generation for FFT\n");
 
 			System.out.println("Enter size of the array");
-			int arrsize = 16;//Integer.parseInt(br.readLine());
+			int arrsize = 5;//Integer.parseInt(br.readLine());
 
 			System.out.println("Enter the value for wDag");
 			int wDag =7000000;//Integer.parseInt(br.readLine());
@@ -73,7 +73,7 @@ public class FFTGraphGenerator {
 
 			}
 			System.out.println("Number of processors: ");
-			int processors = 64;//Integer.parseInt(br.readLine());
+			int processors = 21;//Integer.parseInt(br.readLine());
 			writer.write(processors + "\n");
 			System.out.println("Mean MIPS value: ");
 			int meanmips = 1800;//Integer.parseInt(br.readLine());
@@ -94,7 +94,7 @@ public class FFTGraphGenerator {
 
 			//write the mips value to the file
 			for(int currentmips: mips){
-				writer.write(currentmips + "\t");
+				writer.write(currentmips + "\n");
 			}
 			writer.write("\n");
 			
@@ -169,8 +169,8 @@ public class FFTGraphGenerator {
 			}
 			//recursive call task values for dependency and communicationcost
 			for(int i =0; i<arrsize; i++){
-				mat[i][2*i+1] = 1;
-				mat[i][2*i+2] = 1;
+				mat[i][2*i+1] = (int)(Math.random()*20)+1;
+				mat[i][2*i+2] = (int)(Math.random()*20)+1;
 				communicationCost[i][2*i+1] = (int)(ccr*avgcomputationCost[i]);
 				communicationCost[i][2*i+2] = (int)(ccr*avgcomputationCost[i]);
 			}
@@ -203,8 +203,8 @@ public class FFTGraphGenerator {
 						num2=num2+(int)(Math.pow(2,l)*a[i][k]);
 						l++;
 					}
-					mat[num1+(g*arrsize)-1][num2+(h*arrsize)-1]=1;
-					mat[num1+(g*arrsize)-1][num1+(g*arrsize)+arrsize-1]=1;
+					mat[num1+(g*arrsize)-1][num2+(h*arrsize)-1]=(int)(Math.random()*20)+1;
+					mat[num1+(g*arrsize)-1][num1+(g*arrsize)+arrsize-1]=(int)(Math.random()*20)+1;
 					communicationCost[num1+(g*arrsize)-1][num2+(h*arrsize)-1]=(int)(ccr*avgcomputationCost[num2+(h*arrsize)-1]);
 					communicationCost[num1+(g*arrsize)-1][num1+(g*arrsize)+arrsize-1]=(int)(ccr*avgcomputationCost[num1+(g*arrsize)+arrsize-1]);
 
@@ -216,7 +216,7 @@ public class FFTGraphGenerator {
 
 			//setting the dependency for the deadtask
 			for(i=tasks-1-arrsize;i<tasks-1;i++)
-				mat[i][tasks-1] = 1;
+				mat[i][tasks-1] = (int)(Math.random()*20)+1;
 
 			//display the precedence relation matrix
 			System.out.println("The precedence relation matrix is: \n");
@@ -237,7 +237,7 @@ public class FFTGraphGenerator {
 			//write the precedence relation matrix into the file 
 			for(int f=0; f<tasks; f++){
 				for(int j=0; j<tasks; j++){
-					writer.write(mat[f][j] + "\t");
+					writer.write(mat[f][j] + " ");
 				}
 				writer.write("\n");
 			}

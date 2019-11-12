@@ -1,7 +1,6 @@
 package scheduler;
 
 import Optimizer.AntLionOptimizer;
-import models.Solution;
 import models.Task;
 import models.Vm;
 
@@ -94,7 +93,7 @@ public class Runner {
     }
     public static void main(String[] args) throws IOException {
         Runner runner = new Runner();
-        File workflow = new File("workflow.txt");
+        File workflow = new File("fft.txt");
         BufferedReader reader = new BufferedReader(new FileReader(workflow));
         String line = null;
         line = reader.readLine();
@@ -194,11 +193,16 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
-        AntLionOptimizer malo= new AntLionOptimizer(100,10,100,2,100,3);
+        AntLionOptimizer malo= new AntLionOptimizer(200,21,200,2,50,5);
         malo.startOptimisation(runner);
-        for(int i=0;i<malo.fitnessArchive.size();i++){
-
+        FileWriter writer = new FileWriter("archive.txt");
+        BufferedWriter buffer = new BufferedWriter(writer);
+        for(int count = 0; count < malo.fitnessArchive.size(); count++){
+            buffer.write(malo.fitnessArchive.get(count).get(0).toString()+" "+malo.fitnessArchive.get(count).get(1).toString());
+            buffer.newLine();
         }
+        buffer.close();
     }
+
 
 }

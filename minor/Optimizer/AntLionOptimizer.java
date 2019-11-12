@@ -89,6 +89,7 @@ public class AntLionOptimizer {
     }
 
     public void calculateFitness(Runner runner){
+        antFitness.clear();
         for(int i=0;i<antPosition.size();i++){
             Solution solution= new Solution(runner,antPosition.get(i));
             List<Double> fitness=solution.calculateObjectives();
@@ -96,7 +97,7 @@ public class AntLionOptimizer {
                 elitePosition=antPosition.get(i);
                 eliteFitness=fitness;
             }
-            antFitness.set(i,fitness);
+            antFitness.add(fitness);
         }
     }
 
@@ -113,7 +114,7 @@ public class AntLionOptimizer {
             for(int j=i-1;j>=0;j--){
                 if(tempFitnessArchive.get(i).equals(tempFitnessArchive.get(j))){
                     hashMap.put(i, false);
-                    hashMap.put(j, true);
+                    hashMap.put(j, false);
                 }
                 else{
                     if(dominates(tempFitnessArchive.get(i),tempFitnessArchive.get(j))){
@@ -213,19 +214,19 @@ public class AntLionOptimizer {
         List<Double> walk = new ArrayList<>();
         double I=1.0;
         if ((double)currIter>(double)maxIterations/10)
-            I=1+100*((double)currIter/(double)maxIterations);
+            I=1+10*((double)currIter/(double)maxIterations);
         else if ((double)currIter>(double)maxIterations/2)
-            I=1+1000*((double)currIter/(double)maxIterations);
+            I=1+100*((double)currIter/(double)maxIterations);
         else if ((double)currIter>(double)maxIterations*(3/4))
-            I=1+10000*((double)currIter/(double)maxIterations);
+            I=1+1000*((double)currIter/(double)maxIterations);
         else if ((double)currIter>(double)maxIterations*(0.9))
-            I=1+100000*((double)currIter/(double)maxIterations);
+            I=1+10000*((double)currIter/(double)maxIterations);
         else if ((double)currIter>(double)maxIterations*(0.95))
-            I=1+1000000*((double)currIter/(double)maxIterations);
+            I=1+100000*((double)currIter/(double)maxIterations);
         else;
-        for(int i=0;i<antlion.size();i++){
-            antlion.set(i,antlion.get(i)+1);
-        }
+//        for(int i=0;i<antlion.size();i++){
+//            antlion.set(i,antlion.get(i)+1);
+//        }
         lowerBound.clear();
         upperBound.clear();
         for(int i=0;i<this.numTasks;i++){
@@ -234,13 +235,13 @@ public class AntLionOptimizer {
         }
         for(int i=0;i<this.numTasks;i++){
             if(Math.random()>0.5){
-                lowerBound.set(i,lowerBound.get(i)+antlion.get(i));
+                lowerBound.set(i,lowerBound.get(i)+antlion.get(i)+1);
             }
-            else lowerBound.set(i,-lowerBound.get(i)+antlion.get(i));
+            else lowerBound.set(i,-lowerBound.get(i)+antlion.get(i)+1);
             if(Math.random()>0.5){
-                upperBound.set(i,upperBound.get(i)+antlion.get(i));
+                upperBound.set(i,upperBound.get(i)+antlion.get(i)+1);
             }
-            else upperBound.set(i,-upperBound.get(i)+antlion.get(i));
+            else upperBound.set(i,-upperBound.get(i)+antlion.get(i)+1);
         }
         for(int i=0;i<this.numTasks;i++){
             List<Double> cumsum = new ArrayList<>();
@@ -282,7 +283,7 @@ public class AntLionOptimizer {
         for(int i=0;i<randomWalkAroundAntLion.size();i++)
         {
             indexes.add(i);
-            ans.add(i);
+                ans.add(i);
         }
         indexes.sort(new Comparator<Integer>() {
             @Override
@@ -299,6 +300,10 @@ public class AntLionOptimizer {
         for(int i=0;i<numTasks;i++){
             ans.set(i,ans.get(i)%nVm);
         }
+//        List<Integer> ans= new ArrayList<>();
+//        for (int j = 0; j < numTasks; j++) {
+//            ans.add((int) (Math.random() * nVm));
+//        }
         return ans;
     }
 
@@ -315,8 +320,10 @@ public class AntLionOptimizer {
             int index=rouletteWheelSelection(inverse(ranks));
             if(index==-1)
                 index=0;
-            List<Integer> randomAntLionPosition = positionArchive.get(0);
+            int randomAntLionPos=(int) Math.random()*positionArchive.size();
+            List<Integer> randomAntLionPosition = positionArchive.get(randomAntLionPos);
             elitePosition=positionArchive.get(index);
+            antPosition.clear();
             for(int i=0;i<searchAgents;i++){
                 List<Double> randomWalkAroundAntLion = randomWalk(randomAntLionPosition);
                 List<Double> randomWalkAroundElite = randomWalk(elitePosition);
@@ -325,7 +332,7 @@ public class AntLionOptimizer {
                 }
                 List<Integer> vmAllocation = new ArrayList<>();
                 vmAllocation=spvRule(randomWalkAroundAntLion);
-                antPosition.set(i,vmAllocation);
+                antPosition.add(vmAllocation);
             }
         }
     }
