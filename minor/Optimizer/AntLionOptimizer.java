@@ -26,9 +26,9 @@ public class AntLionOptimizer {
 
     public List<Double> eliteFitness;
 
-    public List<Integer> elitePosition1;
-
-    public List<Double> eliteFitness1;
+//    public List<Integer> elitePosition1;
+//
+//    public List<Double> eliteFitness1;
 
     public List<Double> upperBound;
 
@@ -182,7 +182,7 @@ public class AntLionOptimizer {
         return remainingSet;
     }
 
-    private List<Integer> updateArchiveNDSort(boolean print) throws IOException {
+    private void updateArchiveNDSort() throws IOException {
         List<List<Integer>> tempPositionArchive = new ArrayList<>();
         List<List<Double>> tempFitnessArchive = new ArrayList<>();
         tempPositionArchive.addAll(positionArchive);
@@ -232,9 +232,9 @@ public class AntLionOptimizer {
                 }
             }
         }
-//        List<Integer> index= crowdingDistance(fronts.get(1),2,tempFitnessArchive);
-//        elitePosition=tempPositionArchive.get(index.get(0));
-//        eliteFitness=tempFitnessArchive.get(index.get(0));
+        List<Integer> index= crowdingDistance(fronts.get(1),1,tempFitnessArchive);
+        elitePosition=tempPositionArchive.get(index.get(0));
+        eliteFitness=tempFitnessArchive.get(index.get(0));
 //        elitePosition1=tempPositionArchive.get(index.get(1));
 //        eliteFitness1=tempFitnessArchive.get(index.get(1));
         int i=1;
@@ -263,7 +263,7 @@ public class AntLionOptimizer {
         }
 
         int currentArchiveSize = 0;
-        List<Integer> elite = new ArrayList<>();
+//        List<Integer> elite = new ArrayList<>();
         for(int j = 1; j <= fronts.size(); j++){
             int idx=0;
             currentArchiveSize += fronts.get(j).size();
@@ -274,9 +274,9 @@ public class AntLionOptimizer {
                     int solIndex = toAdd.get(it);
                     fitnessArchive.add(tempFitnessArchive.get(solIndex));
                     positionArchive.add(tempPositionArchive.get(solIndex));
-                    if(j==1){
-                        elite.add(idx);
-                    }
+//                    if(j==1){
+//                        elite.add(idx);
+//                    }
                     idx++;
                 }
                 break;
@@ -285,23 +285,23 @@ public class AntLionOptimizer {
                     int solIndex = front.get(it);
                     fitnessArchive.add(tempFitnessArchive.get(solIndex));
                     positionArchive.add(tempPositionArchive.get(solIndex));
-                    if(j==1){
-                        elite.add(idx);
-                    }
+//                    if(j==1){
+//                        elite.add(idx);
+//                    }
                     idx++;
                 }
             }
         }
-        if(print==true){
-            FileWriter writer = new FileWriter("archive.txt",true);
-            BufferedWriter buffer = new BufferedWriter(writer);
-            for(int ids: fronts.get(1)){
-                buffer.write(tempFitnessArchive.get(ids).get(0).toString()+" "+tempFitnessArchive.get(ids).get(1).toString());
-                buffer.newLine();
-            }
-            buffer.close();
-        }
-        return elite;
+//        if(print==true){
+//            FileWriter writer = new FileWriter("archive.txt",true);
+//            BufferedWriter buffer = new BufferedWriter(writer);
+//            for(int ids: fronts.get(1)){
+//                buffer.write(tempFitnessArchive.get(ids).get(0).toString()+" "+tempFitnessArchive.get(ids).get(1).toString());
+//                buffer.newLine();
+//            }
+//            buffer.close();
+//        }
+//        return elite;
     }
 
     private void updateArchive() {
@@ -507,47 +507,72 @@ public class AntLionOptimizer {
         return ans;
     }
 
+//    public void startOptimisation(Runner runner) throws IOException {
+//        this.initializeArchives();
+//        for(currIter=0;currIter<maxIterations;currIter++){
+//            System.out.println(currIter);
+//            calculateFitness(runner);
+////            updateArchive();
+////            if(positionArchive.size()> maxArchiveSize){
+////                rankingProcess();
+////                handleFullArchive();
+////            }
+////            rankingProcess();
+////            int index=rouletteWheelSelection(inverse(ranks));
+////            if(index==-1)
+////                index=0;
+//            List<Integer> elite = updateArchiveNDSort(false);
+//            rankingProcess(elite.size());
+//            int index=rouletteWheelSelection(inverse(ranks),elite.size());
+//            int index2=rouletteWheelSelection(inverse(ranks),elite.size());
+//            if(index==-1)
+//                index=0;
+//            if(index2==-1)
+//                index2=0;
+//            elitePosition=positionArchive.get(index);
+//            elitePosition1=positionArchive.get(index2);
+//            int randomAntLionPos=(int) (Math.random()*positionArchive.size());
+//            List<Integer> randomAntLionPosition = positionArchive.get(randomAntLionPos);
+//            antPosition.clear();
+//            for(int i=0;i<searchAgents;i++){
+//                List<Double> randomWalkAroundAntLion = randomWalk(randomAntLionPosition);
+//                List<Double> randomWalkAroundElite = randomWalk(elitePosition);
+//                List<Double> randomWalkAroundElite1 = randomWalk(elitePosition1);
+//                for(int j=0;j<numTasks;j++){
+//                    randomWalkAroundAntLion.set(j,randomWalkAroundElite.get(j));
+////                            +randomWalkAroundAntLion.get(j)+randomWalkAroundElite1.get(j));
+//                }
+//                List<Integer> vmAllocation = new ArrayList<>();
+//                vmAllocation=spvRule(randomWalkAroundAntLion);
+//                antPosition.add(vmAllocation);
+//            }
+//        }
+////        updateArchiveNDSort(true);
+//    }
+
     public void startOptimisation(Runner runner) throws IOException {
         this.initializeArchives();
         for(currIter=0;currIter<maxIterations;currIter++){
             System.out.println(currIter);
             calculateFitness(runner);
-//            updateArchive();
-//            if(positionArchive.size()> maxArchiveSize){
-//                rankingProcess();
-//                handleFullArchive();
-//            }
-//            rankingProcess();
-//            int index=rouletteWheelSelection(inverse(ranks));
-//            if(index==-1)
-//                index=0;
-            List<Integer> elite = updateArchiveNDSort(false);
-            rankingProcess(elite.size());
-            int index=rouletteWheelSelection(inverse(ranks),elite.size());
-            int index2=rouletteWheelSelection(inverse(ranks),elite.size());
-            if(index==-1)
-                index=0;
-            if(index2==-1)
-                index2=0;
-            elitePosition=positionArchive.get(index);
-            elitePosition1=positionArchive.get(index2);
-            int randomAntLionPos=(int) (Math.random()*positionArchive.size());
-            List<Integer> randomAntLionPosition = positionArchive.get(randomAntLionPos);
+            updateArchiveNDSort();
+            int randomAntLionPosIndex=(int) (Math.random()*positionArchive.size());
+            List<Integer> randomAntLionPosition = positionArchive.get(randomAntLionPosIndex);
             antPosition.clear();
             for(int i=0;i<searchAgents;i++){
                 List<Double> randomWalkAroundAntLion = randomWalk(randomAntLionPosition);
                 List<Double> randomWalkAroundElite = randomWalk(elitePosition);
-                List<Double> randomWalkAroundElite1 = randomWalk(elitePosition1);
+//                List<Double> randomWalkAroundElite1 = randomWalk(elitePosition1);
                 for(int j=0;j<numTasks;j++){
-                    randomWalkAroundAntLion.set(j,randomWalkAroundElite.get(j));
-//                            +randomWalkAroundAntLion.get(j)+randomWalkAroundElite1.get(j));
+                    randomWalkAroundAntLion.set(j,randomWalkAroundElite.get(j)
+                            +randomWalkAroundAntLion.get(j));
                 }
                 List<Integer> vmAllocation = new ArrayList<>();
                 vmAllocation=spvRule(randomWalkAroundAntLion);
                 antPosition.add(vmAllocation);
             }
         }
-//        updateArchiveNDSort(true);
+
     }
 
 }
