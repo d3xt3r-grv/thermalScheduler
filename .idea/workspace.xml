@@ -4,17 +4,18 @@
     <list default="true" id="95f3391c-f6c4-4bd7-ac0b-2a97c71b7ada" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archive.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/FFTGraphGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/FFTGraphGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fft.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fft.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/graph.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/scheduler/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/scheduler/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/FFTGraphGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cloudsim-3.0.3/org/cloudbus/cloudsim/examples/FFTGraphGenerator.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CoverageViewManager">
-    <option name="myElementSize" value="241" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,11 +41,11 @@
     <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.capture" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -73,12 +74,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NonPowerAware" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.power.planetlab.NonPowerAware" />
+    <configuration name="GaussianEliminationGG" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.GaussianEliminationGG" />
       <module name="cloudsim-3.0.3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.cloudbus.cloudsim.examples.power.planetlab.*" />
+          <option name="PATTERN" value="org.cloudbus.cloudsim.examples.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -86,12 +87,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RandomGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.RandomGenerator" />
+    <configuration name="NonPowerAware" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.cloudbus.cloudsim.examples.power.planetlab.NonPowerAware" />
       <module name="cloudsim-3.0.3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.cloudbus.cloudsim.examples.*" />
+          <option name="PATTERN" value="org.cloudbus.cloudsim.examples.power.planetlab.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -135,10 +136,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Runner (1)" />
-        <item itemvalue="Application.Runner" />
         <item itemvalue="Application.FFTGraphGenerator" />
+        <item itemvalue="Application.GaussianEliminationGG" />
+        <item itemvalue="Application.Runner" />
         <item itemvalue="Application.NonPowerAware" />
-        <item itemvalue="Application.RandomGenerator" />
       </list>
     </recent_temporary>
   </component>
@@ -178,19 +179,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/minor/scheduler/Runner.java</url>
-          <line>198</line>
-          <option name="timeStamp" value="164" />
+          <line>204</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="166" />
+          <line>521</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/examples/org/cloudbus/cloudsim/examples/FFTGraphGenerator.java</url>
+          <line>240</line>
+          <option name="timeStamp" value="125" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/thermalScheduler$Runner__1_.ic" NAME="Runner (1) Coverage Results" MODIFIED="1573466070243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/cloudsim_3_0_3$Runner__1_.ic" NAME="Runner (1) Coverage Results" MODIFIED="1573385997990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>scheduler.*</FILTER>
     </SUITE>
   </component>

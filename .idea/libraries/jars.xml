@@ -8,6 +8,7 @@
       <root url="jar://$PROJECT_DIR$/jars/cloudsim-3.0.3.jar!/" />
     </CLASSES>
     <JAVADOC />
+    <MATHEMATICA_LIBRARY />
     <SOURCES />
   </library>
 </component>
