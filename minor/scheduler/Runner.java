@@ -193,15 +193,16 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
-        AntLionOptimizer malo= new AntLionOptimizer(200,46,200,2,100,8);
+        AntLionOptimizer malo= new AntLionOptimizer(200,21,200,2,50,8);
         malo.startOptimisation(runner);
-        FileWriter writer = new FileWriter("archive.txt");
+        FileWriter writer = new FileWriter("archive.txt",false);
         BufferedWriter buffer = new BufferedWriter(writer);
         for(int count = 0; count < malo.fitnessArchive.size(); count++){
             buffer.write(malo.fitnessArchive.get(count).get(0).toString()+" "+malo.fitnessArchive.get(count).get(1).toString());
             buffer.newLine();
         }
         buffer.close();
+
     }
 
 
