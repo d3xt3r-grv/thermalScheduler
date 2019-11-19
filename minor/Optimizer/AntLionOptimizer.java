@@ -534,20 +534,63 @@ public class AntLionOptimizer {
             int randomAntLionPos=(int) (Math.random()*positionArchive.size());
             List<Integer> randomAntLionPosition = positionArchive.get(randomAntLionPos);
             antPosition.clear();
-            for(int i=0;i<searchAgents;i++){
-                List<Double> randomWalkAroundAntLion = randomWalk(randomAntLionPosition);
-                List<Double> randomWalkAroundElite = randomWalk(elitePosition);
-                List<Double> randomWalkAroundElite1 = randomWalk(elitePosition1);
-                for(int j=0;j<numTasks;j++){
-                    randomWalkAroundAntLion.set(j,randomWalkAroundElite.get(j));
-//                            +randomWalkAroundAntLion.get(j)+randomWalkAroundElite1.get(j));
-                }
-                List<Integer> vmAllocation = new ArrayList<>();
-                vmAllocation=spvRule(randomWalkAroundAntLion);
-                antPosition.add(vmAllocation);
+//            for(int i=0;i<searchAgents;i++){
+//                List<Double> randomWalkAroundAntLion = randomWalk(randomAntLionPosition);
+//                List<Double> randomWalkAroundElite = randomWalk(elitePosition);
+//                List<Double> randomWalkAroundElite1 = randomWalk(elitePosition1);
+//                for(int j=0;j<numTasks;j++){
+//                    randomWalkAroundAntLion.set(j,randomWalkAroundElite.get(j));
+////                            +randomWalkAroundAntLion.get(j)+randomWalkAroundElite1.get(j));
+//                }
+//                List<Integer> vmAllocation = new ArrayList<>();
+//                vmAllocation=spvRule(randomWalkAroundAntLion);
+//                antPosition.add(vmAllocation);
+//            }
+            for(int i = 0; i< searchAgents; i++){
+                List<Integer> ant = createAntPosition(randomAntLionPosition);
+                ant= eliteEffect(ant);
+                antPosition.add(ant);
             }
         }
 //        updateArchiveNDSort(true);
+    }
+
+    private List<Integer> eliteEffect(List<Integer> ant) {
+        int I=numTasks/4;
+        if ((double)currIter>(double)maxIterations/10)
+            I=1+I/2;
+        else if ((double)currIter>(double)maxIterations/2)
+            I=1+I/4;
+        else if ((double)currIter>(double)maxIterations*(3/4))
+            I=1+I/8;
+        else if ((double)currIter>(double)maxIterations*(0.9))
+            I=1+I/16;
+        else if ((double)currIter>(double)maxIterations*(0.95))
+            I=1+I/32;
+        else;
+        int lowerBound = (int) (Math.random()*(numTasks-I));
+        Collections.copy(ant.subList(lowerBound,lowerBound+I),elitePosition.subList(lowerBound,lowerBound+I));
+        return ant;
+    }
+
+    private List<Integer> createAntPosition(List<Integer> randomAntLionPosition) {
+        int I=numTasks/2;
+        if ((double)currIter>(double)maxIterations/10)
+            I=1+I/2;
+        else if ((double)currIter>(double)maxIterations/2)
+            I=1+I/4;
+        else if ((double)currIter>(double)maxIterations*(3/4))
+            I=1+I/8;
+        else if ((double)currIter>(double)maxIterations*(0.9))
+            I=1+I/16;
+        else if ((double)currIter>(double)maxIterations*(0.95))
+            I=1+I/32;
+        else;
+        int lowerBound = (int)(Math.random()*(numTasks-I));
+        List<Integer> ant= new ArrayList<>();
+        ant.addAll(randomAntLionPosition);
+        Collections.reverse(ant.subList(lowerBound,lowerBound+I));
+        return ant;
     }
 
 }
