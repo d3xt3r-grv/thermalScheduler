@@ -99,7 +99,7 @@ public class AntLionOptimizer {
         antFitness.clear();
         for(int i=0;i<antPosition.size();i++){
             Solution solution= new Solution(runner,antPosition.get(i));
-            List<Double> fitness=solution.calculateObjectives();
+            List<Double> fitness=solution.calculateObjectives(runner);
             if(dominates(fitness,eliteFitness)){
                 elitePosition=antPosition.get(i);
                 eliteFitness=fitness;
