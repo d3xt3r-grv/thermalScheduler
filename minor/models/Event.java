@@ -8,12 +8,15 @@ public class Event {
 
     public double mips;
 
+    public double uplinkPower;
+
     public String eventType;
 
-    public Event(double startTime, double finishTime, double mips, String eventType){
+    public Event(double startTime, double finishTime, double mips,double uplinkPower, String eventType){
         this.startTime=startTime;
         this.eventType=eventType;
         this.finishTime=finishTime;
         this.mips=mips;
+        this.uplinkPower=uplinkPower;
     }
 }

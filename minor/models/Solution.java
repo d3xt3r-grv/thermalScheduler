@@ -64,8 +64,8 @@ public class Solution {
         actualFinishTimes.put(t,aft);
     }
 
-    public List<Double> calculateObjectives(){
-        Simulator.simulate(this);
+    public List<Double> calculateObjectives(Runner runner){
+        Simulator.simulate(this,runner);
         List<Double> objectives= new ArrayList<>();
         objectives.add(this.time);
         objectives.add(this.energy);
