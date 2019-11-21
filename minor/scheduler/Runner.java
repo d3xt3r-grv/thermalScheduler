@@ -224,7 +224,7 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
-        AntLionOptimizer malo= new AntLionOptimizer(200,nTasks,200,2,100,nVm);
+        AntLionOptimizer malo= new AntLionOptimizer(200,nTasks,200,2,nTasks<50?100:2*nTasks,nVm);
         malo.startOptimisation(runner);
         FileWriter writer = new FileWriter("archive.txt",false);
         BufferedWriter buffer = new BufferedWriter(writer);

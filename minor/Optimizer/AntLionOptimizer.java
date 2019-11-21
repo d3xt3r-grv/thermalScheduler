@@ -513,15 +513,15 @@ public class AntLionOptimizer {
     private List<Integer> eliteEffect(List<Integer> ant) {
         int I=numTasks/4;
         if ((double)currIter>(double)maxIterations/10)
-            I=2+I/2;
+            I=2+2*I/3;
         else if ((double)currIter>(double)maxIterations/2)
-            I=2+I/4;
+            I=2+2*2*I/(3*3);
         else if ((double)currIter>(double)maxIterations*(3/4))
-            I=2+I/8;
+            I=2+2*2*2*I/(3*3*3);
         else if ((double)currIter>(double)maxIterations*(0.9))
-            I=2+I/16;
+            I=2+2*2*2*2*I/(3*3*3*3);
         else if ((double)currIter>(double)maxIterations*(0.95))
-            I=2+I/32;
+            I=2+2*2*2*2*2*I/(3*3*3*3*3);
         else;
         int lowerBound = (int) (Math.random()*(numTasks-I));
         Collections.copy(ant.subList(lowerBound,lowerBound+I),elitePosition.subList(lowerBound,lowerBound+I));
@@ -532,16 +532,15 @@ public class AntLionOptimizer {
         int I=numTasks/2;
 //        int I= (int)(numTasks*0.5);
         if ((double)currIter>(double)maxIterations/10)
-            I=2+I/2;
+            I=2+2*I/3;
         else if ((double)currIter>(double)maxIterations/2)
-            I=2+I/4;
+            I=2+2*2*I/(3*3);
         else if ((double)currIter>(double)maxIterations*(3/4))
-            I=2+I/8;
+            I=2+2*2*2*I/(3*3*3);
         else if ((double)currIter>(double)maxIterations*(0.9))
-            I=2+I/16;
+            I=2+2*2*2*2*I/(3*3*3*3);
         else if ((double)currIter>(double)maxIterations*(0.95))
-            I=2+I/32;
-        else;
+            I=2+2*2*2*2*2*I/(3*3*3*3*3);
         int lowerBound = (int)(Math.random()*(numTasks-I));
         List<Integer> ant= new ArrayList<>();
         ant.addAll(randomAntLionPosition);
