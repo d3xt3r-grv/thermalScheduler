@@ -1,0 +1,6 @@
+fileID = fopen('archive.txt','r');
+formatSpec = '%f %f';
+Archive = fscanf(fileID,formatSpec)
+ArchiveE= Archive(2:2:end)
+ArchiveT=Archive(1:2:end)
+plot(ArchiveT(:,1),ArchiveE(:,2),'ko','MarkerSize',8,'markerfacecolor','k');

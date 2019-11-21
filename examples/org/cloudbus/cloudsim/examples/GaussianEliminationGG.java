@@ -20,7 +20,7 @@ public class GaussianEliminationGG {
 		try{
 			
 		
-		File file = new File("workflow.txt");
+		File file = new File("graph.txt");
 		//System.out.println(file.getAbsolutePath());
 		//FileWriter writerfile = new FileWriter(file);
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));	

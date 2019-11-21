@@ -1,6 +1,6 @@
 package scheduler;
 
-import models.Solution;
+import Optimizer.AntLionOptimizer;
 import models.Task;
 import models.Vm;
 
@@ -16,7 +16,11 @@ public class Runner {
 
     public List<List<Double>> channelBandwidth;
 
+    public List<List<Double>> channelPower;
+
     public List<List<Double>> vmToVmBandwidth;
+
+    public List<List<Double>> vmToVmUplinkPower;
 
     public Task getTaskById(int id){
         for (Task task : taskList) {
@@ -89,11 +93,13 @@ public class Runner {
         this.taskList= new ArrayList<>();
         this.graph= new ArrayList<>();
         this.channelBandwidth=new ArrayList<>();
+        this.channelPower=new ArrayList<>();
         this.vmToVmBandwidth=new ArrayList<>();
+        this.vmToVmUplinkPower=new ArrayList<>();
     }
     public static void main(String[] args) throws IOException {
         Runner runner = new Runner();
-        File workflow = new File("workflow.txt");
+        File workflow = new File("fft.txt");
         BufferedReader reader = new BufferedReader(new FileReader(workflow));
         String line = null;
         line = reader.readLine();
@@ -152,6 +158,20 @@ public class Runner {
             }
             runner.channelBandwidth.add(tempList);
         }
+        //Setting host to host uplink channel power
+        for(int i=0;i<nHosts;i++){
+            line =reader.readLine();
+            String[] temp = line.split(" ");
+            List<Double> tempList = new ArrayList<>();
+            for (int j = 0; j < nHosts; j++) {
+                double pow=Double.parseDouble(temp[j]);
+                if(pow==-1)
+                    pow=0.0;
+                tempList.add(pow);
+            }
+            runner.channelPower.add(tempList);
+        }
+
         //Setting vmToVmBandwidth
         for(int i=0;i<nVm;i++){
             List<Double> tempList = new ArrayList<>();
@@ -162,6 +182,17 @@ public class Runner {
                 else tempList.add(runner.channelBandwidth.get(runner.vmList.get(i).host).get(runner.vmList.get(j).host));
             }
             runner.vmToVmBandwidth.add(tempList);
+        }
+        //Setting vmToVmUplinkPower
+        for(int i=0;i<nVm;i++){
+            List<Double> tempList = new ArrayList<>();
+            for(int j=0;j<nVm;j++){
+                if(runner.vmList.get(i).host==runner.vmList.get(j).host){
+                    tempList.add(0.0);
+                }
+                else tempList.add(runner.channelPower.get(runner.vmList.get(i).host).get(runner.vmList.get(j).host));
+            }
+            runner.vmToVmUplinkPower.add(tempList);
         }
         //Get average bandwidth of the channel
         double avgBw = runner.getAvgBandwidth();
@@ -193,8 +224,17 @@ public class Runner {
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
-        Solution solution=new Solution(runner,vmAllocation);
-        solution.calculateObjectives();
+        AntLionOptimizer malo= new AntLionOptimizer(200,nTasks,200,2,100,nVm);
+        malo.startOptimisation(runner);
+        FileWriter writer = new FileWriter("archive.txt",false);
+        BufferedWriter buffer = new BufferedWriter(writer);
+        for(int count = 0; count < malo.fitnessArchive.size(); count++){
+            buffer.write(malo.fitnessArchive.get(count).get(0).toString()+" "+malo.fitnessArchive.get(count).get(1).toString());
+            buffer.newLine();
+        }
+        buffer.close();
+
     }
+
 
 }
