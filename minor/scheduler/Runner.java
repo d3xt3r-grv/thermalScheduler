@@ -99,7 +99,7 @@ public class Runner {
     }
     public static void main(String[] args) throws IOException {
         Runner runner = new Runner();
-        File workflow = new File("fft.txt");
+        File workflow = new File("input.txt");
         BufferedReader reader = new BufferedReader(new FileReader(workflow));
         String line = null;
         line = reader.readLine();
