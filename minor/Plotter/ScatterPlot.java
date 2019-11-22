@@ -13,6 +13,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.SymbolicXYItemLabelGenerator;
+import org.jfree.chart.labels.XYToolTipGenerator;
 import org.jfree.chart.plot.DefaultDrawingSupplier;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -24,6 +25,8 @@ public class ScatterPlot extends JFrame {
     private static final long serialVersionUID = 6294689542092367723L;
 
     public XYDataset dataset;
+
+    public static int counter =0;
 
     public Stack<Pair<List<List<Double>>, Integer>> data;
 
@@ -38,8 +41,8 @@ public class ScatterPlot extends JFrame {
     public void addValues(List<List<Double>> fitnessArchive, int iter) {
 
         XYSeries series = new XYSeries(iter);
-        for(List<Double> values: fitnessArchive){
-            series.add(values.get(0),values.get(1));
+        for(int i=0;i<fitnessArchive.size();i++){
+            series.add(fitnessArchive.get(i).get(0),fitnessArchive.get(i).get(1));
         }
 
         ((XYSeriesCollection)dataset).addSeries(series);
@@ -57,7 +60,8 @@ public class ScatterPlot extends JFrame {
             //Changes background color
             XYPlot plot = (XYPlot)chart.getPlot();
             plot.setBackgroundPaint(new Color(255, 255, 255));
-
+            XYLineAndShapeRenderer render = (XYLineAndShapeRenderer) plot.getRenderer();
+            render.setBaseToolTipGenerator(xyToolTipGenerator);
             // Create Panel
             ChartPanel panel = new ChartPanel(chart);
             setContentPane(panel);
@@ -67,4 +71,19 @@ public class ScatterPlot extends JFrame {
             this.setVisible(true);
         });
     }
+    XYToolTipGenerator xyToolTipGenerator = new XYToolTipGenerator()
+    {
+        public String generateToolTip(XYDataset dataset, int series, int item)
+        {
+            Number x1 = dataset.getX(series, item);
+            Number y1 = dataset.getY(series, item);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(String.format("<html><p style='color:#0000ff;'>Series: '%s'</p>", dataset.getSeriesKey(series)));
+            stringBuilder.append(String.format("SOl. Id '%d' <br>",item));
+            stringBuilder.append(String.format("Time: %f s<br/>", x1.doubleValue()));
+            stringBuilder.append(String.format("Energy: %f J", y1.doubleValue()));
+            stringBuilder.append("</html>");
+            return stringBuilder.toString();
+        }
+    };
 }
