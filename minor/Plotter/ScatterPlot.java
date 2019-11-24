@@ -12,9 +12,7 @@ import org.apache.commons.math3.util.Pair;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.labels.SymbolicXYItemLabelGenerator;
 import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.DefaultDrawingSupplier;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
@@ -22,7 +20,6 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class ScatterPlot extends JFrame {
-    private static final long serialVersionUID = 6294689542092367723L;
 
     public XYDataset dataset;
 
@@ -71,6 +68,8 @@ public class ScatterPlot extends JFrame {
             this.setVisible(true);
         });
     }
+
+
     XYToolTipGenerator xyToolTipGenerator = new XYToolTipGenerator()
     {
         public String generateToolTip(XYDataset dataset, int series, int item)

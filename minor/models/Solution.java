@@ -28,6 +28,7 @@ public class Solution {
 
     public Map<Vm, List<Event>> timeline;
 
+
     public Solution(Runner runner, List<Integer> vmAllocation){
         this.schedulingSequence =runner.taskList;
         this.mapping= new HashMap<>();
@@ -38,11 +39,13 @@ public class Solution {
         this.actualStartTimes= new HashMap<>();
         this.actualFinishTimes = new HashMap<>();
         this.timeline=new HashMap<>();
+
         for(int i=0;i<vmAllocation.size();i++){
             mapping.put(schedulingSequence.get(i),runner.vmList.get(vmAllocation.get(i)));
         }
         setActualCosts(runner);
     }
+
 
     public void setActualCosts(Runner runner){
         for(Task t:mapping.keySet()){
@@ -59,10 +62,12 @@ public class Solution {
         }
     }
 
+
     public void setActualTimes(Task t, Double ast, Double aft){
         actualStartTimes.put(t,ast);
         actualFinishTimes.put(t,aft);
     }
+
 
     public List<Double> calculateObjectives(Runner runner){
         Simulator.simulate(this,runner);

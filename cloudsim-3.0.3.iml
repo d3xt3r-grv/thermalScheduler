@@ -21,5 +21,7 @@
     <orderEntry type="library" name="slf4j-log4j12-2.0.0-alpha1" level="project" />
     <orderEntry type="library" name="slf4j-api-2.0.0-alpha1" level="project" />
     <orderEntry type="library" name="slf4j-api-1.7.9" level="project" />
+    <orderEntry type="library" name="jcommon-1.0.23" level="project" />
+    <orderEntry type="library" name="jfreechart-1.0.19" level="project" />
   </component>
 </module>

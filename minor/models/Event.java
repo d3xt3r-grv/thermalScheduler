@@ -12,6 +12,7 @@ public class Event {
 
     public String eventType;
 
+
     public Event(double startTime, double finishTime, double mips,double uplinkPower, String eventType){
         this.startTime=startTime;
         this.eventType=eventType;

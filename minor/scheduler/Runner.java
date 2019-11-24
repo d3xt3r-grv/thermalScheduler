@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 
 public class Runner {
+
     public List<Vm> vmList;
 
     public List<Task> taskList;
@@ -22,7 +23,9 @@ public class Runner {
 
     public List<List<Double>> vmToVmUplinkPower;
 
+
     public Task getTaskById(int id){
+
         for (Task task : taskList) {
             if (task.id == id) {
                 return task;
@@ -31,9 +34,11 @@ public class Runner {
         return null;
     }
 
+
     public double getAvgBandwidth(){
         double harmonicSum=0;
         int nVm= vmList.size();
+
         for(int i=0;i<nVm;i++){
             for(int j=0;j<nVm;j++){
                 if(vmToVmBandwidth.get(i).get(j)!=Double.MAX_VALUE){
@@ -44,15 +49,19 @@ public class Runner {
         return nVm*nVm/harmonicSum;
     }
 
+
     public double getAvgMips(){
         double sum=0;
+
         for (Vm vm : vmList) {
             sum+=vm.maxMips;
         }
         return sum/vmList.size();
     }
 
+
     public Vm getVmById(int id){
+
         for (Vm vm : vmList) {
             if (vm.id == id) {
                 return vm;
@@ -61,10 +70,12 @@ public class Runner {
         return null;
     }
 
+
     public void calculateRanks(Task root)
     {
         double rank = calRank(root);
     }
+
 
     public double calRank(Task task)
     {
@@ -77,6 +88,7 @@ public class Runner {
             else
             {
                 double maxChildRank = Double.MIN_VALUE;
+
                 for(Task childTask : task.childTasks)
                 {
                     maxChildRank=Math.max(calRank(childTask)+task.avgCommTime.get(childTask),maxChildRank);
@@ -88,7 +100,9 @@ public class Runner {
         return task.rank;
     }
 
+
     public Runner(){
+
         this.vmList= new ArrayList<>();
         this.taskList= new ArrayList<>();
         this.graph= new ArrayList<>();
@@ -97,15 +111,20 @@ public class Runner {
         this.vmToVmBandwidth=new ArrayList<>();
         this.vmToVmUplinkPower=new ArrayList<>();
     }
+
+
     public static void main(String[] args) throws IOException {
         Runner runner = new Runner();
+
         File workflow = new File("input.txt");
         BufferedReader reader = new BufferedReader(new FileReader(workflow));
+
         String line = null;
         line = reader.readLine();
         int nHosts;
         nHosts=Integer.parseInt(line);
         line=reader.readLine();
+
         //Setting up Vm list
         int nVm;
         nVm = Integer.parseInt(line);
@@ -114,6 +133,7 @@ public class Runner {
             String[] vmParam = line.split(" ");
             runner.vmList.add(new Vm(i, Double.parseDouble(vmParam[0]), Integer.parseInt(vmParam[1]), Double.parseDouble(vmParam[2]), Double.parseDouble(vmParam[3])));
         }
+
         //Setting up task list
         int nTasks;
         line = reader.readLine();
@@ -122,6 +142,7 @@ public class Runner {
             line = reader.readLine();
             runner.taskList.add(new Task(i, Double.parseDouble(line)));
         }
+
         //Making adjacency matrix of the DAG
         for (int i = 0; i < nTasks; i++) {
             line = reader.readLine();
@@ -132,6 +153,7 @@ public class Runner {
             }
             runner.graph.add(tempList);
         }
+
         //Setting child and parent tasks with size of output map
         for (int i = 0; i < nTasks; i++) {
             Task curr = runner.getTaskById(i);
@@ -145,6 +167,7 @@ public class Runner {
                 }
             }
         }
+
         //Setting channel bandwidth
         for(int i=0;i<nHosts;i++){
             line =reader.readLine();
@@ -158,6 +181,7 @@ public class Runner {
             }
             runner.channelBandwidth.add(tempList);
         }
+
         //Setting host to host uplink channel power
         for(int i=0;i<nHosts;i++){
             line =reader.readLine();
@@ -183,6 +207,7 @@ public class Runner {
             }
             runner.vmToVmBandwidth.add(tempList);
         }
+
         //Setting vmToVmUplinkPower
         for(int i=0;i<nVm;i++){
             List<Double> tempList = new ArrayList<>();
@@ -194,10 +219,13 @@ public class Runner {
             }
             runner.vmToVmUplinkPower.add(tempList);
         }
+
         //Get average bandwidth of the channel
         double avgBw = runner.getAvgBandwidth();
+
         //Get average mips of all the vm's in the cloud
         double avgMips = runner.getAvgMips();
+
         for (Task task : runner.taskList) {
             for(Task child: task.sizeOfOutput.keySet()){
                 task.avgCommTime.put(child,task.sizeOfOutput.get(child)/avgBw);
@@ -220,21 +248,22 @@ public class Runner {
                 return Double.compare(t1.rank, task.rank);
             }
         });
+
         List<Integer> vmAllocation = new ArrayList<>();
         for(int i=0;i<nTasks;i++){
             vmAllocation.add((int) (Math.random()*nVm));
         }
+
         AntLionOptimizer malo= new AntLionOptimizer(200,nTasks,200,2,nTasks<50?100:2*nTasks,nVm);
         malo.startOptimisation(runner);
+
         FileWriter writer = new FileWriter("archive.txt",false);
         BufferedWriter buffer = new BufferedWriter(writer);
+
         for(int count = 0; count < malo.fitnessArchive.size(); count++){
             buffer.write(malo.fitnessArchive.get(count).get(0).toString()+" "+malo.fitnessArchive.get(count).get(1).toString());
             buffer.newLine();
         }
         buffer.close();
-
     }
-
-
 }

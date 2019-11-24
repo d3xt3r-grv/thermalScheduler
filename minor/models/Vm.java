@@ -4,13 +4,14 @@ public class Vm  {
 
     public int id;
 
-    public double coefficient;
-
     public int host;
+
+    public double coefficient;
 
     public double minMips;
 
     public double maxMips;
+
 
     public Vm(int id, double coeff, int host, double maxMips, double minMips){
         this.id=id;
