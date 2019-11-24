@@ -423,6 +423,33 @@ public class AntLionOptimizer {
     }
 
 
+    private void printELite() {
+        System.out.println("The Elite around which walk is done in next iteration: "+elitePosition.toString()+ " Time and energy values: "+ eliteFitness.toString());
+    }
+
+
+    private void printRandomAntLion(int randomAntLionPos) {
+        System.out.println("The anlion around which walk is done in next iteration: "+positionArchive.get(randomAntLionPos).toString()+ " Time and energy values: "+ fitnessArchive.get(randomAntLionPos).toString());
+    }
+
+
+    private void printSectionBreak() {
+
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println();
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println();
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println();
+    }
+
+
+    private void printArchives(List<Integer> elite) {
+        for(int i=0;i<elite.size();i++){
+            System.out.println("Solution "+ (i+1) + " " + positionArchive.get(elite.get(i)).toString()+" Time and Energy values: "+ fitnessArchive.get(elite.get(i)).toString());
+        }
+    }
+
     public void startOptimisation(Runner runner) throws IOException {
 
         ScatterPlot plotComparison= new ScatterPlot("Ant Lion Optimiser iterative development");
@@ -474,32 +501,5 @@ public class AntLionOptimizer {
         plotComparison.plot();
     }
 
-
-    private void printELite() {
-        System.out.println("The Elite around which walk is done in next iteration: "+elitePosition.toString()+ " Time and energy values: "+ eliteFitness.toString());
-    }
-
-
-    private void printRandomAntLion(int randomAntLionPos) {
-        System.out.println("The anlion around which walk is done in next iteration: "+positionArchive.get(randomAntLionPos).toString()+ " Time and energy values: "+ fitnessArchive.get(randomAntLionPos).toString());
-    }
-
-
-    private void printSectionBreak() {
-
-        System.out.println("--------------------------------------------------------------------");
-        System.out.println();
-        System.out.println("--------------------------------------------------------------------");
-        System.out.println();
-        System.out.println("--------------------------------------------------------------------");
-        System.out.println();
-    }
-
-
-    private void printArchives(List<Integer> elite) {
-        for(int i=0;i<elite.size();i++){
-            System.out.println("Solution "+ (i+1) + " " + positionArchive.get(elite.get(i)).toString()+" Time and Energy values: "+ fitnessArchive.get(elite.get(i)).toString());
-        }
-    }
 
 }
