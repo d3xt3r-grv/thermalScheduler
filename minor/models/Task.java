@@ -11,6 +11,10 @@ public class Task {
 
     public double size;
 
+    public double avgExecTime;
+
+    public double rank;
+
     public Map<Task,Double> sizeOfOutput;
 
     public List<Task> parentTasks;
@@ -19,9 +23,6 @@ public class Task {
 
     public Map<Task,Double> avgCommTime;
 
-    public double avgExecTime;
-
-    public double rank;
 
     public Task(int id, double size){
         this.id=id;

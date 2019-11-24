@@ -13,20 +13,6 @@ import java.util.*;
 @SuppressWarnings("unchecked")
 public class AntLionOptimizer {
 
-    public List<List<Integer>> positionArchive;
-
-    public List<List<Double>> fitnessArchive;
-
-    public List<Double> ranks;
-
-    public List<List<Integer>> antPosition;
-
-    public List<List<Double>> antFitness;
-
-    public List<Integer> elitePosition;
-
-    public List<Double> eliteFitness;
-
     public int maxIterations;
 
     public int searchAgents;
@@ -43,11 +29,24 @@ public class AntLionOptimizer {
 
     public int currIter;
 
+    public List<List<Integer>> positionArchive;
+
+    public List<List<Double>> fitnessArchive;
+
+    public List<Double> ranks;
+
+    public List<List<Integer>> antPosition;
+
+    public List<List<Double>> antFitness;
+
+    public List<Integer> elitePosition;
+
+    public List<Double> eliteFitness;
+
 
     public AntLionOptimizer(int maxIterations, int numTasks, int searchAgents, int numObj, int maxArchiveSize, int nVm){
 
         // INITIALISING ARRAYS AND VALUES
-
         positionArchive= new ArrayList<>();
         fitnessArchive= new ArrayList<>();
         ranks=new ArrayList<>();
@@ -65,10 +64,10 @@ public class AntLionOptimizer {
         this.currIter=0;
     }
 
+
     public void initializeArchives(){
 
         // INSERTING RANDOM VALUES FOR THE FIRST ITERATION
-
         for(int i=0;i<searchAgents;i++) {
             List<Integer> temp = new ArrayList<>();
             for (int j = 0; j < numTasks; j++) {
@@ -78,7 +77,6 @@ public class AntLionOptimizer {
         }
 
         // INSERTING INFINITE VALUES FOR FITNESS AS INITIALISATION
-
         for(int i=0;i<searchAgents;i++){
             List<Double> temp=new ArrayList<>();
             for(int j=0;j<numObj;j++){
@@ -90,17 +88,16 @@ public class AntLionOptimizer {
         eliteFitness=antFitness.get(0);
     }
 
+
     public void calculateFitness(Runner runner){
 
         // CALCULATING VALUES OF TIME AND ENERGY
-
         antFitness.clear();
         for(int i=0;i<antPosition.size();i++){
             Solution solution= new Solution(runner,antPosition.get(i));
             List<Double> fitness=solution.calculateObjectives(runner);
 
             // UPDATING ELITE IF BETTER FITNESS VALUE FOUND
-
             if(dominates(fitness,eliteFitness)){
                 elitePosition=antPosition.get(i);
                 eliteFitness=fitness;
@@ -109,8 +106,11 @@ public class AntLionOptimizer {
         }
     }
 
+
     private List<Integer> crowdingDistance(List<Integer> front, int remaining, List<List<Double>> tempFitnessArchive){
+
         HashMap<Integer,Double> crowdDist = new HashMap<>();
+
         for(int c = 0; c < front.size(); c++){
             crowdDist.put(front.get(c),0.0);
         }
@@ -183,7 +183,9 @@ public class AntLionOptimizer {
         return remainingSet;
     }
 
+
     private List<Integer> updateArchiveNDSort(){
+
         List<List<Integer>> tempPositionArchive = new ArrayList<>();
         List<List<Double>> tempFitnessArchive = new ArrayList<>();
         tempPositionArchive.addAll(positionArchive);
@@ -195,13 +197,10 @@ public class AntLionOptimizer {
 
         Map<Integer, Integer> nP = new HashMap<>();
         Map<Integer, List<Integer>> sP = new HashMap<>();
-
         Map<Integer, Integer> rank = new HashMap<>();
-
         Map<Integer, List<Integer>> fronts = new HashMap<>();
 
         // SORTING ALL SOLUTIONS INTO FRONTS
-
         for(int i=0;i<tempFitnessArchive.size();i++)
         {
             int tempNp=0;
@@ -239,7 +238,9 @@ public class AntLionOptimizer {
                 }
             }
         }
+
         int i=1;
+
         while(fronts.containsKey(i))
         {
             List<Integer> nextFront = new ArrayList<>();
@@ -266,11 +267,14 @@ public class AntLionOptimizer {
 
         int currentArchiveSize = 0;
         List<Integer> elite = new ArrayList<>();
+
         for(int j = 1; j <= fronts.size(); j++){
             int idx=0;
             currentArchiveSize += fronts.get(j).size();
             List<Integer> front = fronts.get(j);
-            if(currentArchiveSize>maxArchiveSize){
+
+            if(currentArchiveSize>maxArchiveSize)
+            {
                 List<Integer> toAdd = crowdingDistance(front, maxArchiveSize - fitnessArchive.size(), tempFitnessArchive);
                 for(int it = 0; it < toAdd.size();it++){
                     int solIndex = toAdd.get(it);
@@ -282,7 +286,9 @@ public class AntLionOptimizer {
                     idx++;
                 }
                 break;
-            }else{
+            }
+            else
+            {
                 for(int it = 0; it < front.size();it++){
                     int solIndex = front.get(it);
                     fitnessArchive.add(tempFitnessArchive.get(solIndex));
@@ -304,6 +310,7 @@ public class AntLionOptimizer {
         double maxTime=Double.MIN_VALUE;
         double minEnergy=Double.MAX_VALUE;
         double maxEnergy=Double.MIN_VALUE;
+
         for(int i=0;i<size;i++){
             minTime=Math.min(minTime,fitnessArchive.get(i).get(0));
             maxTime=Math.max(maxTime,fitnessArchive.get(i).get(0));
@@ -311,8 +318,10 @@ public class AntLionOptimizer {
             maxEnergy=Math.max(maxEnergy,fitnessArchive.get(i).get(1));
             ranks.add(0.0);
         }
+
         Double timeDensityParameter = (maxTime-minTime)/20;
         Double energyDensityParameter = (maxEnergy - minEnergy) /20 ;
+
         for(int i=0;i<size;i++){
             ranks.set(i,0.0);
             for(int j=0;j<fitnessArchive.size();j++){
@@ -331,11 +340,14 @@ public class AntLionOptimizer {
     private int rouletteWheelSelection(List<Double> weights,int size) {
         List<Double> cumSum = new ArrayList<>();
         cumSum.add((double)weights.get(0));
+
         for(int i=1;i<size;i++){
             cumSum.add((double)cumSum.get(i-1)+weights.get(i));
         }
+
         double p=Math.random()*cumSum.get(size-1);
         int index=-1;
+
         for(int idx=0;idx<size;idx++){
             if(cumSum.get(idx)>p){
                 index=idx;
@@ -345,9 +357,11 @@ public class AntLionOptimizer {
         return index;
     }
 
+
     private boolean dominates(List<Double> f1, List<Double> f2) {
         double time1=f1.get(0),time2=f2.get(0),energy1=f1.get(1),energy2=f2.get(1);
         boolean all=false,any=false;
+
         if(time1<=time2 && energy1<=energy2)
             all=true;
         if(time1<time2 || energy1<energy2)
@@ -355,7 +369,9 @@ public class AntLionOptimizer {
         return all && any;
     }
 
+
     private List<Double> inverse(List<Double> ranks) {
+
         List<Double> weights= new ArrayList<>();
         for(double r :ranks){
             weights.add(1.0/r);
@@ -365,6 +381,7 @@ public class AntLionOptimizer {
 
 
     private List<Integer> eliteEffect(List<Integer> ant) {
+
         int I=numTasks/4;
         if ((double)currIter>(double)maxIterations/10)
             I=2+2*I/3;
@@ -377,12 +394,14 @@ public class AntLionOptimizer {
         else if ((double)currIter>(double)maxIterations*(0.95))
             I=2+2*2*2*2*2*I/(3*3*3*3*3);
         else;
+
         int lowerBound = (int) (Math.random()*(numTasks-I));
         Collections.copy(ant.subList(lowerBound,lowerBound+I),elitePosition.subList(lowerBound,lowerBound+I));
         return ant;
     }
 
     private List<Integer> createAntPosition(List<Integer> randomAntLionPosition) {
+
         int I=numTasks/2;
         if ((double)currIter>(double)maxIterations/10)
             I=2+2*I/3;
@@ -394,6 +413,8 @@ public class AntLionOptimizer {
             I=2+2*2*2*2*I/(3*3*3*3);
         else if ((double)currIter>(double)maxIterations*(0.95))
             I=2+2*2*2*2*2*I/(3*3*3*3*3);
+        else;
+
         int lowerBound = (int)(Math.random()*(numTasks-I));
         List<Integer> ant= new ArrayList<>();
         ant.addAll(randomAntLionPosition);
@@ -401,54 +422,71 @@ public class AntLionOptimizer {
         return ant;
     }
 
+
     public void startOptimisation(Runner runner) throws IOException {
+
         ScatterPlot plotComparison= new ScatterPlot("Ant Lion Optimiser iterative development");
         ScatterPlot results = new ScatterPlot("Ant Lion Optimiser results");
         this.initializeArchives();
+
         System.out.println("--------------------------ARCHIVE INITIALIZED WITH RANDOM VALUES---------------------------");
         printSectionBreak();
+
         for(currIter=0;currIter<maxIterations;currIter++){
             calculateFitness(runner);
             List<Integer> elite = updateArchiveNDSort();
+
             System.out.println("Current Iteration: "+ currIter +  " \n The solutions in the best front of this iteration and their fitness values: " );
+
             printArchives(elite);
             printSectionBreak();
             rankingProcess(elite.size());
+
             int index=rouletteWheelSelection(inverse(ranks),elite.size());
             if(index==-1)
                 index=0;
+
             elitePosition=positionArchive.get(index);
             eliteFitness=fitnessArchive.get(index);
+
             if(currIter==(0.2)*maxIterations || currIter==(0.4)*maxIterations || currIter==(0.6)*maxIterations || currIter==(0.8)*maxIterations ||currIter==maxIterations-1)
             {
                 plotComparison.addValues(fitnessArchive,currIter);
             }
+
             int randomAntLionPos=(int) (Math.random()*positionArchive.size());
             List<Integer> randomAntLionPosition = positionArchive.get(randomAntLionPos);
+
             printELite();
             printRandomAntLion(randomAntLionPos);
             printSectionBreak();
             antPosition.clear();
+
             for(int i = 0; i< searchAgents; i++){
                 List<Integer> ant = createAntPosition(randomAntLionPosition);
                 ant= eliteEffect(ant);
                 antPosition.add(ant);
             }
         }
+
         results.addValues(fitnessArchive,maxIterations);
         results.plot();
         plotComparison.plot();
     }
 
+
     private void printELite() {
         System.out.println("The Elite around which walk is done in next iteration: "+elitePosition.toString()+ " Time and energy values: "+ eliteFitness.toString());
     }
+
 
     private void printRandomAntLion(int randomAntLionPos) {
         System.out.println("The anlion around which walk is done in next iteration: "+positionArchive.get(randomAntLionPos).toString()+ " Time and energy values: "+ fitnessArchive.get(randomAntLionPos).toString());
     }
 
+
     private void printSectionBreak() {
+
         System.out.println("--------------------------------------------------------------------");
         System.out.println();
         System.out.println("--------------------------------------------------------------------");
@@ -456,6 +494,7 @@ public class AntLionOptimizer {
         System.out.println("--------------------------------------------------------------------");
         System.out.println();
     }
+
 
     private void printArchives(List<Integer> elite) {
         for(int i=0;i<elite.size();i++){

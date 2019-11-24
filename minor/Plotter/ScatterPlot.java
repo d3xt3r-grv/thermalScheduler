@@ -21,38 +21,37 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class ScatterPlot extends JFrame {
-    private static final long serialVersionUID = 6294689542092367723L;
 
+    private static final long serialVersionUID = 6294689542092367723L;
     public XYDataset dataset;
 
     public Stack<Pair<List<List<Double>>, Integer>> data;
 
     public ScatterPlot(String title) {
         super(title);
-
         // Create dataset
         dataset=new XYSeriesCollection();
         data= new Stack<>();
     }
 
-    public void addValues(List<List<Double>> fitnessArchive, int iter) {
 
+    public void addValues(List<List<Double>> fitnessArchive, int iter) {
         XYSeries series = new XYSeries(iter);
+
         for(List<Double> values: fitnessArchive){
             series.add(values.get(0),values.get(1));
         }
-
         ((XYSeriesCollection)dataset).addSeries(series);
-
     }
 
+
     public void plot(){
+
         SwingUtilities.invokeLater(() -> {
             // Create chart
             JFreeChart chart = ChartFactory.createScatterPlot(
                     "Time vs Energy PLot",
                     "TIME(s)", "ENERGY(J)", dataset);
-
 
             //Changes background color
             XYPlot plot = (XYPlot)chart.getPlot();
