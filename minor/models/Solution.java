@@ -1,7 +1,7 @@
 package models;
 
-import scheduler.Runner;
-import scheduler.Simulator;
+import simulator.Runner;
+import simulator.Simulator;
 
 import java.util.ArrayList;
 import java.util.HashMap;

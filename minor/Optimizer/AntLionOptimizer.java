@@ -3,10 +3,8 @@ package Optimizer;
 import Plotter.ScatterPlot;
 import models.Solution;
 import org.apache.commons.math3.util.Pair;
-import scheduler.Runner;
+import simulator.Runner;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
