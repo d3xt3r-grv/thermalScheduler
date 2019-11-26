@@ -393,8 +393,15 @@ public class AntLionOptimizer {
             I=2+2*2*2*2*2*I/(3*3*3*3*3);
         else;
 
-        int lowerBound = (int) (Math.random()*(numTasks-I));
-        Collections.copy(ant.subList(lowerBound,lowerBound+I),elitePosition.subList(lowerBound,lowerBound+I));
+        int lowerBound = (int) (Math.random()*(numTasks));
+        if(lowerBound+I < ant.size()-1)
+            Collections.copy(ant.subList(lowerBound,lowerBound+I),elitePosition.subList(lowerBound,lowerBound+I));
+        else{
+            for(int i=0;i<I;i++){
+                ant.set(lowerBound%numTasks,elitePosition.get(i));
+                lowerBound++;
+            }
+        }
         return ant;
     }
 
@@ -413,10 +420,22 @@ public class AntLionOptimizer {
             I=2+2*2*2*2*2*I/(3*3*3*3*3);
         else;
 
-        int lowerBound = (int)(Math.random()*(numTasks-I));
+        int lowerBound = (int)(Math.random()*(numTasks));
+        List<Integer> tempList = new ArrayList<>();
         List<Integer> ant= new ArrayList<>();
         ant.addAll(randomAntLionPosition);
-        Collections.reverse(ant.subList(lowerBound,lowerBound+I));
+        if(lowerBound+I < ant.size()-1){
+            Collections.reverse(ant.subList(lowerBound,lowerBound+I));
+        }
+        else{
+            tempList.addAll(ant.subList(lowerBound,ant.size()-1));
+            tempList.addAll(ant.subList(0,I-(ant.size()-1-lowerBound)));
+            Collections.reverse(tempList);
+            for(int i=0;i<tempList.size();i++){
+                ant.set(lowerBound%numTasks,tempList.get(i));
+                lowerBound++;
+            }
+        }
         return ant;
     }
 
