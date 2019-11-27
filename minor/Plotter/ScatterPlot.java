@@ -80,7 +80,7 @@ public class ScatterPlot extends JFrame {
             stringBuilder.append(String.format("<html><p style='color:#0000ff;'>Series: '%s'</p>", dataset.getSeriesKey(series)));
             stringBuilder.append(String.format("SOl. Id '%d' <br>",item));
             stringBuilder.append(String.format("Time: %f s<br/>", x1.doubleValue()));
-            stringBuilder.append(String.format("Energy: %f J", y1.doubleValue()));
+            stringBuilder.append(String.format("Energy: %f kWh", y1.doubleValue()));
             stringBuilder.append("</html>");
             return stringBuilder.toString();
         }

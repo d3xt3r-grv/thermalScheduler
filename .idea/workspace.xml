@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935496d0-f0db-4ceb-94d7-63752f6732fa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jars.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jars.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archive.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minor/Plotter/ScatterPlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Plotter/ScatterPlot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/simulator/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/simulator/Runner.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,26 +19,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1U9uEi1VOfpoijRF9HgUcFEBkRp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/jars" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <output_file path="$PROJECT_DIR$/log.txt" is_save="true" />
       <option name="MAIN_CLASS_NAME" value="simulator.Runner" />
       <module name="antLionOptimiser" />
       <extension name="coverage">
@@ -54,6 +50,18 @@
         <item itemvalue="Application.Runner" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -73,11 +81,39 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1574833134523">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1574833134523" />
+    <state x="743" y="295" width="424" height="513" key="FileChooserDialogImpl" timestamp="1574833125542">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="743" y="295" width="424" height="513" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1574833125542" />
+    <state width="1874" height="253" key="GridCell.Tab.0.bottom" timestamp="1574833671725">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="253" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671725" />
+    <state width="1874" height="253" key="GridCell.Tab.0.center" timestamp="1574833671725">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="253" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671725" />
+    <state width="1874" height="253" key="GridCell.Tab.0.left" timestamp="1574833671724">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="253" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671724" />
+    <state width="1874" height="253" key="GridCell.Tab.0.right" timestamp="1574833671725">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="253" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671725" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -261,7 +261,7 @@ public class Runner {
         BufferedWriter buffer = new BufferedWriter(writer);
 
         for(int count = 0; count < malo.fitnessArchive.size(); count++){
-            buffer.write(malo.fitnessArchive.get(count).get(0).toString()+" "+malo.fitnessArchive.get(count).get(1).toString());
+            buffer.write(malo.positionArchive.get(count).toString());
             buffer.newLine();
         }
         buffer.close();
