@@ -2,18 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935496d0-f0db-4ceb-94d7-63752f6732fa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jars.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jars.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minor/Optimizer/NDOptimiser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archive.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Optimizer/AntLionOptimizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/Plotter/ScatterPlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/Plotter/ScatterPlot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minor/simulator/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/minor/simulator/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,8 +32,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/jars" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -90,30 +97,46 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1574833134523">
+    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1574834001273">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1574833134523" />
-    <state x="743" y="295" width="424" height="513" key="FileChooserDialogImpl" timestamp="1574833125542">
+    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1574834001273" />
+    <state x="683" y="338" width="525" height="428" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1574836984950">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="743" y="295" width="424" height="513" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1574833125542" />
-    <state width="1874" height="253" key="GridCell.Tab.0.bottom" timestamp="1574833671725">
+    <state x="683" y="338" width="525" height="428" key="#com.intellij.ide.util.TreeClassChooserDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1574836984950" />
+    <state x="743" y="295" width="424" height="513" key="FileChooserDialogImpl" timestamp="1574834012362">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="253" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671725" />
-    <state width="1874" height="253" key="GridCell.Tab.0.center" timestamp="1574833671725">
+    <state x="743" y="295" width="424" height="513" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1574834012362" />
+    <state width="1874" height="253" key="GridCell.Tab.0.bottom" timestamp="1574836656903">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="253" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671725" />
-    <state width="1874" height="253" key="GridCell.Tab.0.left" timestamp="1574833671724">
+    <state width="1874" height="253" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1574836656903" />
+    <state width="1874" height="253" key="GridCell.Tab.0.center" timestamp="1574836656902">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="253" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671724" />
-    <state width="1874" height="253" key="GridCell.Tab.0.right" timestamp="1574833671725">
+    <state width="1874" height="253" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1574836656902" />
+    <state width="1874" height="253" key="GridCell.Tab.0.left" timestamp="1574836656902">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="253" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1574833671725" />
+    <state width="1874" height="253" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1574836656902" />
+    <state width="1874" height="253" key="GridCell.Tab.0.right" timestamp="1574836656903">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="253" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1574836656903" />
+    <state x="443" y="130" width="1024" height="845" key="SettingsEditor" timestamp="1574836992088">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="443" y="130" width="1024" height="845" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1574836992088" />
+    <state x="100" y="125" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1574834306575">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="125" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1574834306575" />
+    <state x="100" y="125" width="1720" height="855" key="dock-window-1" timestamp="1574833887940">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="125" width="1720" height="855" key="dock-window-1/0.27.1920.1053@0.27.1920.1053" timestamp="1574833887940" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

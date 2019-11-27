@@ -1,6 +1,7 @@
 package simulator;
 
 import Optimizer.AntLionOptimizer;
+import Optimizer.NDOptimiser;
 import models.Task;
 import models.Vm;
 
@@ -254,14 +255,17 @@ public class Runner {
             vmAllocation.add((int) (Math.random()*nVm));
         }
 
-        AntLionOptimizer malo= new AntLionOptimizer(200,nTasks,200,2,nTasks<50?100:2*nTasks,nVm);
+        AntLionOptimizer malo= new AntLionOptimizer(600,nTasks,200,2,nTasks<50?100:2*nTasks,nVm);
         malo.startOptimisation(runner);
+//        NDOptimiser ndo = new NDOptimiser(600,nTasks,200,2,nTasks<50?100:2*nTasks,nVm);
+//        ndo.startOptimisation(runner);
 
         FileWriter writer = new FileWriter("archive.txt",false);
         BufferedWriter buffer = new BufferedWriter(writer);
 
         for(int count = 0; count < malo.fitnessArchive.size(); count++){
-            buffer.write(malo.positionArchive.get(count).toString());
+            buffer.write(malo.fitnessArchive.get(count).get(0).toString()+" "+malo.fitnessArchive.get(count).get(1).toString());
+            buffer.write(" "+malo.positionArchive.get(count).toString());
             buffer.newLine();
         }
         buffer.close();

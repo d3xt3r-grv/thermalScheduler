@@ -50,7 +50,7 @@ public class ScatterPlot extends JFrame {
         SwingUtilities.invokeLater(() -> {
             // Create chart
             JFreeChart chart = ChartFactory.createScatterPlot(
-                    "Time vs Energy PLot",
+                    "Time vs Energy Plot",
                     "TIME(s)", "ENERGY(J)", dataset);
 
 
@@ -77,8 +77,7 @@ public class ScatterPlot extends JFrame {
             Number x1 = dataset.getX(series, item);
             Number y1 = dataset.getY(series, item);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(String.format("<html><p style='color:#0000ff;'>Series: '%s'</p>", dataset.getSeriesKey(series)));
-            stringBuilder.append(String.format("SOl. Id '%d' <br>",item));
+            stringBuilder.append(String.format("<html><p style='color:#0000ff;'>Iteration: '%s'</p>", dataset.getSeriesKey(series)));
             stringBuilder.append(String.format("Time: %f s<br/>", x1.doubleValue()));
             stringBuilder.append(String.format("Energy: %f kWh", y1.doubleValue()));
             stringBuilder.append("</html>");
